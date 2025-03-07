@@ -1,0 +1,7 @@
+Strażnik i dwaj więźniowie, wersja trudniejsza i łatwiejsza
+W celi znajduje się nieskończenie wiele ponumerowanych miseczek: m_1, m_2, m_3, i tak dalej. W każdej z nich leży moneta orłem lub reszką do góry.
+Do celi wchodzi strażnik z pierwszym więźniem i na jego oczach odwraca jedną z monet. Następnie pierwszy więzień również odwraca jedną z monet (Być może tę samą, co strażnik). Wtedy strażnik woła do celi drugiego więźnia. Jego zadaniem jest zgadnięcie, którą monetę (tzn. z której miseczki) odwrócił strażnik.  Jeśli zgadnie, strażnik uwolni więźniów. Zadanie polega na podaniu strategii wygrywającej dla więźniów, tzn. takiego sposobu postępowania, by drugi więzień wskazał właściwą monetę. To jest wersja łatwiejsza.
+ 
+Wersja trudniejsza:  podobna jak wyżej z następującą zmianą: po wejściu do celi najpierw pierwszy więzień odwraca monetę, a dopiero potem strażnik. Dalej bez zmian. 
+ 
+Proszę zwrócić uwagę, że w wersji trudniejszej wybór monety przez więźnia pierwszego jest niezależny od wyboru strażnika. Zależy tylko od układu monet w miseczkach.
