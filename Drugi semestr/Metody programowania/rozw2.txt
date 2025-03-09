@@ -1,0 +1,17 @@
+let rec fib n = if n = 0 || n = 1 then 1 else fib (n-1) + fib (n-2);;
+let fib_iter n = let rec fib_tr n f1 f2  = if n = 0 then f2  else fib_tr (n-1) (f1+f2) f1 in fib_tr n 1 1;;
+let matrix_mult m n = let ( * ) (a,b) (c,d) = a*c+b*d and (a,b,c,d) = m and (e,f,g,h) = n in ((a,b)*(e,g),(a,b)*(f,h),(c,d)*(e,g),(c,d)*(f,h));; 
+let matrix_id = (1,0,0,1);;
+let rec matrix_expt m k = if k = 0 then matrix_id else matrix_mult m (matrix_expt m (k-1));;
+let fib_matrix n = let (a,_,_,_) = (matrix_expt (1,1,1,0) n) in a;;
+let rec matrix_expt_fast m n = if n = 0 then matrix_id else let a = matrix_expt_fast m (n/2) in if n mod 2 = 0 then matrix_mult a a else matrix_mult a (matrix_mult a m);;
+let fib_fast n = let (a,_,_,_) = (matrix_expt_fast (1,1,1,0) n) in a;;
+let rec mem x xs = match xs with | [] -> false | t :: h -> x = t || mem x h;;
+let rec maximum xs = match xs with | [] -> neg_infinity | t :: h -> let a = maximum h in if t > a then t else a;; 
+let rec suffixes xs = match xs with | [] -> []:: [] | t :: h -> xs :: (suffixes h);; 
+let rec is_sorted xs  = match xs with | [] -> true | t1 :: [] -> true | t1 :: t2 :: h -> (t1 <= t2) && is_sorted (t2 :: h);; 
+let select xs  = let rec min_tr xs n pos v = match xs with | [] -> (pos, v) | t :: h -> if t < v || pos = 0 then min_tr h (n+1) (n) t else min_tr h (n+1) pos v in let (p,v) = min_tr xs 1 0 0 in (v , let rec new_list xs n p = match xs with | [] -> [] | t :: h ->  if n = p then new_list h (n+1) p else t :: new_list h (n+1) p  in new_list xs 1 p );; 
+let rec select_sort xs = match xs with | [] -> [] | h -> let (a,b) = select h in a :: (select_sort b);;
+let split xs = let rec split2 xs n acc1 acc2 = match xs with | [] -> (acc1, acc2) | t :: h ->  if n = 0 then split2 h 1 (t::acc1) acc2 else split2 h 0  acc1 (t::acc2) in split2 xs 0 [] [];;  
+let rec merge xs ys = match xs with | [] -> ys | t1 :: h1 -> (match ys with | [] -> xs | t2 :: h2 -> if t1 > t2 then t2::(merge xs h2) else t1::(merge h1 ys));; 
+let rec merge_sort xs = match xs with | [] -> [] | t :: [] -> [t] | t -> let (a,b) = split t in merge (merge_sort a) (merge_sort b);; 
