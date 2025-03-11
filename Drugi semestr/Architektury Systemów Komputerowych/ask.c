@@ -26,6 +26,7 @@ int main()
 	x = 0x7FFFFFFF;
 	y = 0x00000000;
 	printf("%d\n",x + y == (uint32_t)y + (uint32_t)x);
+	//i byc moze ostatnie tez :)
 	 
 
 
@@ -33,4 +34,7 @@ int main()
     
        
     return 0;
+}
+int32_t three_fourths(int32_t x){
+    return x-(x>>2)-(((x&2)>>1)|(x&1));
 }
