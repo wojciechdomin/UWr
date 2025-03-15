@@ -15,3 +15,29 @@ let rec select_sort xs = match xs with | [] -> [] | h -> let (a,b) = select h in
 let split xs = let rec split2 xs n acc1 acc2 = match xs with | [] -> (acc1, acc2) | t :: h ->  if n = 0 then split2 h 1 (t::acc1) acc2 else split2 h 0  acc1 (t::acc2) in split2 xs 0 [] [];;  
 let rec merge xs ys = match xs with | [] -> ys | t1 :: h1 -> (match ys with | [] -> xs | t2 :: h2 -> if t1 > t2 then t2::(merge xs h2) else t1::(merge h1 ys));; 
 let rec merge_sort xs = match xs with | [] -> [] | t :: [] -> [t] | t -> let (a,b) = split t in merge (merge_sort a) (merge_sort b);; 
+-------
+let product xs = let rec product_tr xs acc = match xs with | [] -> acc | y :: ys -> product_tr ys (acc*y) in product_tr xs 1;;
+let compose f g = (fun x -> f (g x));;
+let build_list n f = let rec build n c f = if c = n then [] else f c :: build n (c+1) f in build n 0 f;; 
+let negatives n = build_list n (fun x -> -x );; 
+let reciprocals n = build_list n (fun x -> 1.0 /. float_of_int x);;
+let evens n = build_list n (fun x -> 2*x);;
+let identity_M n = build_list n (fun x -> let rec vec c n = if c = n then [] else (if c = x then 1 else 0 )::(vec (c+1) n) in vec 0 n);;
+let empty_set x = false;;
+let singleton a x = if a =x then true else false;;
+let in_set a s = s a;;
+let union s t x = ( s x) || (t x);;
+let rec insert_bst x t = match t with | Leaf -> Node(Leaf,x,Leaf) | Node (l, v, r) -> if x < v then Node(insert_bst x l , v, r) else Node(l , v , insert_bst x r);; 
+let rec fold_tree f a t =
+  match t with
+  | Leaf -> a
+  | Node (l, v, r) -> f (fold_tree f a l) v (fold_tree f a r);;
+let tree_product t = fold_tree (fun x y z -> x * y *z) 1 t;; 
+let tree_flip t = fold_tree (fun x y z -> Node (z , y , x)) Leaf t;;
+let tree_height t = fold_tree (fun x y z -> 1 + max x z) 0 t;;
+let tree_span t = fold_tree (fun x y z -> match (x,z) with | (None, None) -> Some (y,y) | (None, Some (_,z1)) -> Some (y,z1) | (Some (x0,_),None) -> Some (x0,y) | (Some(x0,_),Some(_,z1)) -> Some (x0, z1)) None t;;
+let flatten t = fold_tree (fun x y z -> x@[y]@z) [] t;;
+let rec insert_bst x t = match t with | Leaf -> Node(Leaf,x,Leaf) | Node (l, v, r) -> if x < v then Node(insert_bst x l , v, r) else Node(l , v , insert_bst x r);; 
+let tree_sort xs = let rec build xs = match xs with | [] -> Leaf | y :: ys -> insert_bst y (build ys) in flatten (build xs);;
+
+
