@@ -37,7 +37,14 @@ let tree_flip t = fold_tree (fun x y z -> Node (z , y , x)) Leaf t;;
 let tree_height t = fold_tree (fun x y z -> 1 + max x z) 0 t;;
 let tree_span t = fold_tree (fun x y z -> match (x,z) with | (None, None) -> Some (y,y) | (None, Some (_,z1)) -> Some (y,z1) | (Some (x0,_),None) -> Some (x0,y) | (Some(x0,_),Some(_,z1)) -> Some (x0, z1)) None t;;
 let flatten t = fold_tree (fun x y z -> x@[y]@z) [] t;;
+let rec flat_append t xs = match t with | Leaf -> xs | Node(l,v,r) -> (flat_append l (v :: flat_append r xs));; 
+let flatten2 t = flat_append t [];;
 let rec insert_bst x t = match t with | Leaf -> Node(Leaf,x,Leaf) | Node (l, v, r) -> if x < v then Node(insert_bst x l , v, r) else Node(l , v , insert_bst x r);; 
 let tree_sort xs = let rec build xs = match xs with | [] -> Leaf | y :: ys -> insert_bst y (build ys) in flatten (build xs);;
+let rec min_el t = match t with | Leaf -> failwith "!" | Node (Leaf,v,r) -> (v,r) | Node(l,v,r) -> (let (u,t) = min_el l in (u , Node (t,v,r)) );; 
+let next_el t = match t with | Leaf -> failwith "!" | Node (l, v, Leaf) -> None | Node (l,v,r) -> let (u,t) = min_el r in Some (u , Node (l,v,t));; 
+let delete_root t = match t with | Leaf -> failwith "!" | Node(l,v,r) -> let u = next_el (Node(l,v,r)) in (match u with | None -> l | Some (u,Leaf) -> failwith "!" | Some(u,Node(l1,v1,r1)) -> Node(l1,u,r1));; 
+let rec delete x t = match t with | Leaf -> failwith "!" | Node (l,v,r) -> if x > v then Node (l,v,(delete x r)) else (if x < v then Node ((delete x l),v,r) else delete_root (Node(l,v,r)) );;
+
 
 
