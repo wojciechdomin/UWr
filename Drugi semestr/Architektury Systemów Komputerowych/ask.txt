@@ -41,3 +41,13 @@ cout<<fixed<<setprecision(20)<<dx*dy*dz<<"\n";
 
     return 0;
 }
+
+
+--------------------------------
+
+fun(unsigned int):
+        movl    %edi, %ecx
+        movl    $2863311531, %eax
+        imulq   %rcx, %rax
+        shrq    $33, %rax
+        retq
