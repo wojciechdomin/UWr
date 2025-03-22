@@ -1,53 +1,43 @@
-/******************************************************************************
-
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
-#include <iostream>
-#include <iomanip>
-#include <stdint.h>
-#include<bits/stdc++.h>
-using namespace std;
-
-int main()
-{
-    uint64_t a = 0x0000000055555556;
-    uint32_t n = 665;
-    cout<<((a*n)>>32)<<"\n";
-    srand(time(NULL));
-    int32_t x,y,z;
-cout<<fixed<<setprecision(20);
-    double dx, dy, dz;
-for(int i = 0; i < 1000000; i++){
-    x = rand(); y = rand(); z = rand();
- //  cout<<x<<","<<y<<","<<z<<"\n";
-
-    dx = x; dy = y; dz =z;
-cout<<((dx * dy) * dz == dx * (dy * dz))<<"\n";
-if((dx * dy) * dz != dx * (dy * dz)) break;
+unsigned int fun(unsigned int x){
+    return ((x&0xFFFFFF00)>>8) |  ((x&0x000000FF)<<24) ;
 }
-cout<<dx<<","<<dy<<","<<dz<<"\n";
- cout<<(   (float)x == (float)dx)<<//truth
-   ( dx - dy == (double)(x - y))<< //x = 0, y = MIN_INT
- (  (dx + dy) + dz == dx + (dy + dz))<< //true
-   ( (dx * dy) * dz == dx * (dy * dz))<< //  1924595734,1898337153,150627336
-  (  dx / dx == dz / dz)<<"\n"; //x = 0; z = 1;
-cout<<fixed<<setprecision(20)<<dx*dy*dz<<"\n";
-    
-  
+fun:
+        movl    %edi, %eax
+        rorl    $8, %eax
+        ret
+--------------------------
+unsigned long fun(unsigned long x, unsigned long y){
+    unsigned long r = x+y;
+    return ((x^r)&(y^r))>>63;
+}
+-------------------------------------------------
+bcc_add:
+        movabsq $7378697629483820646, %rax //0x6666666666666666
+        movabsq $1229782938247303441, %rdx //0x1111111111111111
+        addq    %rsi, %rax
+        addq    %rdi, %rax
+        xorq    %rsi, %rdi
+        xorq    %rax, %rdi
+        notq    %rdi
+        andq    %rdx, %rdi
+        movq    %rdi, %rdx
+        rorq    $3, %rdi
+        rorq    $2, %rdx 
+        addq    %rdi, %rdx
+        subq    %rdx, %rax
+        ret
 
-    return 0;
+unsigned long bcc_add(unsigned long x, unsigned long y){
+    unsigned long z=x+0x6666666666666666;
+    z=z+y;
+    unsigned long r = ((x^y^z)&0x1111111111111111)^0x1111111111111111;
+    r = (r >>2) + (r >> 3); //cykliczne musi byc!!!!
+    z-=r;
+
+    return z;
 }
 
-
---------------------------------
-
-fun(unsigned int):
-        movl    %edi, %ecx
-        movl    $2863311531, %eax
-        imulq   %rcx, %rax
-        shrq    $33, %rax
-        retq
+gcc -O2 -S sprobuj.c
+gcc -c sprobuj.s
+gcc -o sprobuj sprobuj.o
+./sprobuj
