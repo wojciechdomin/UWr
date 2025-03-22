@@ -103,7 +103,6 @@ module CharFreq = Freq (CharMapDict);;
 let list_of_string s = String.to_seq s |> List.of_seq;;
 let char_freq str = CharFreq.freq (list_of_string str);;
 
-
 module LeftistHeap = struct
 type ('a , 'b ) heap =
 | HLeaf
@@ -122,7 +121,34 @@ rank r <= rank l
 && is_valid l
 && is_valid r
 let make_node p v l r = if rank l >= rank r then HNode((1 + rank r), l , p, v, r) else HNode((1+rank l),r,p,v,l) 
+let rec heap_merge h1 h2 = match (h1, h2) with | (HLeaf, h2) -> h2 | (h1, HLeaf) -> h1 | (HNode(n1, l1, p1, e1, r1), HNode(n2, l2, p2, e2, r2)) -> if p1 > p2 then make_node p2 e2 l2 (heap_merge r2 h1) else make_node p1 e1 l1 (heap_merge r1 h2)
+end;;   
+
+module type PRIO_QUEUE = sig
+  type ('a, 'b) pq
+  val empty : ('a, 'b) pq
+  val insert : 'a -> 'b -> ('a, 'b) pq -> ('a, 'b) pq
+  val pop : ('a, 'b) pq -> ('a, 'b) pq
+  val min : ('a, 'b) pq -> 'b
+  val min_prio : ('a, 'b) pq -> 'a
 end
+
+module Leftist_Pq : PRIO_QUEUE = struct
+type ('a,'b) pq = ('a,'b) LeftistHeap.heap
+let empty = LeftistHeap.HLeaf
+let insert a b old_heap = LeftistHeap.(heap_merge (make_node a b HLeaf HLeaf) old_heap)
+let pop old_heap = LeftistHeap.(match old_heap with | HLeaf -> failwith "!" | HNode(n1,l1,p1,v1,r1) -> heap_merge l1 r1)
+let min old_heap =LeftistHeap.(match old_heap with | HLeaf -> failwith "!" | HNode(n1,l1,p1,v1,r1) ->  v1)
+let min_prio old_heap =LeftistHeap.(match old_heap with | HLeaf -> failwith "!" | HNode(n1,l1,p1,v1,r1) ->  p1)
+end;;
+
+module PqSort (Pq : PRIO_QUEUE) = struct
+let pqsort xs = let rec build xs = match xs with | [] -> Pq.empty | y :: ys -> Pq.insert y y (build ys) in let rec debuild prio = Pq.(match prio with | a when a = empty -> [] | a -> min prio :: debuild (pop prio)) in debuild (build xs)
+end;; 
+
+
+module LeftistPqSort = PqSort(Leftist_Pq);;
+
 
 
 
