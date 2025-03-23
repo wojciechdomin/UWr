@@ -6,12 +6,13 @@ fun:
         rorl    $8, %eax
         ret
 --------------------------
+zad.3 lista 4
 unsigned long fun(unsigned long x, unsigned long y){
     unsigned long r = x+y;
     return ((x^r)&(y^r))>>63;
 }
 -------------------------------------------------
-bcc_add:
+bcd_add:
         movabsq $7378697629483820646, %rax //0x6666666666666666
         movabsq $1229782938247303441, %rdx //0x1111111111111111
         addq    %rsi, %rax
@@ -27,7 +28,7 @@ bcc_add:
         subq    %rdx, %rax
         ret
 
-unsigned long bcc_add(unsigned long x, unsigned long y){
+unsigned long bcd_add(unsigned long x, unsigned long y){
     unsigned long z=x+0x6666666666666666;
     z=z+y;
     unsigned long r = ((x^y^z)&0x1111111111111111)^0x1111111111111111;
@@ -41,3 +42,18 @@ gcc -O2 -S sprobuj.c
 gcc -c sprobuj.s
 gcc -o sprobuj sprobuj.o
 ./sprobuj
+
+mult:
+	movq %rdx, %r8
+	movq %rsi, %rax
+	mul %rcx
+	movq %rax, %r9
+	movq %rdx, %r10
+	mul %r8
+	add %rax, %r10
+	movq %rdi,%rax
+	mul %rcx
+	addq %rax, %r10
+	movq %r10, %rdx
+	movq %r9, %rax
+	ret
