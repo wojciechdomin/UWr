@@ -1,0 +1,46 @@
+fun4:
+rorl $8 ,%edi
+movl $edi, %eax
+andl $0x00FF00FF ,%eax
+rorl $16, %edi
+andl $0xFF00FF00, %edi
+orl %edi, %eax
+ret
+
+
+fun6:
+
+
+
+
+
+
+
+
+
+
+bcd_add:
+        movabsq $7378697629483820646, %rax //0x6666666666666666
+        movabsq $1229782938247303441, %rdx //0x1111111111111111
+        addq    %rsi, %rax //naturaliniej tu po prostu dać stałą
+        addq    %rdi, %rax
+        xorq    %rsi, %rdi
+        xorq    %rax, %rdi
+        notq    %rdi
+        andq    %rdx, %rdi
+        movq    %rdi, %rdx
+        rorq    $3, %rdi
+        rorq    $2, %rdx 
+        addq    %rdi, %rdx
+        subq    %rdx, %rax
+        ret
+
+unsigned long bcd_add(unsigned long x, unsigned long y){
+    unsigned long z=x+0x6666666666666666;
+    z=z+y;
+    unsigned long r = ((x^y^z)&0x1111111111111111)^0x1111111111111111;
+    r = (r >>2) + (r >> 3); //cykliczne musi byc!!!!
+    z-=r;
+
+    return z;
+}
