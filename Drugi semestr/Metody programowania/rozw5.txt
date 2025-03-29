@@ -1,0 +1,8 @@
+zad2.
+0*1*
+00*11*
+(1*)|(0*)|( (0|1)*10(0|1)* )
+((1*)0(1*)0(1*))*
+(0*10)*((0*1)|(0*10)) 
+zad. 3 i 4
+let parens_ok s= let opening c = c = '[' || c = '(' || c = '{' and good c d =  (c = '[' && d = ']') || (c = '(' && d = ')') || (c = '{' && d = '}') in let rec check xs stack = match xs with | [] -> stack = [] | y :: ys -> (if opening y then check ys (y :: stack) else (match stack with | [] -> false | z :: zs -> if good z y then check ys zs else false) ) in check (String.to_seq s |> List.of_seq) [];;
