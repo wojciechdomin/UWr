@@ -1,0 +1,32 @@
+puzzle3:
+2 movl %edi, %edi
+3 salq $32, %rsi
+4 movl $32, %edx
+5 movl $0x80000000, %ecx
+6 xorl %eax, %eax
+7 .L3: addq %rdi, %rdi
+8 movq %rdi, %r8
+9 subq %rsi, %r8
+10 js .L2
+11 orl %ecx, %eax
+12 movq %r8, %rdi
+13 .L2: shrl %ecx
+14 decl %edx
+15 jne .L3
+16 ret
+
+
+uint32_t puzzle3(uint32_t x,uint32_t y):
+uint64_t lx = x; 
+uint64_t ly = uint64_t(y) << 32;
+uint32_t res = 0;
+
+for(int i=31; i >= 0; i--){
+lx *= 2;
+if(lx  >= ly) {
+	res += (1<<i), 
+	lx -= ly;
+}
+}
+return res;
+}
