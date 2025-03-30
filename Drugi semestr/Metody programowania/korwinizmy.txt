@@ -1,0 +1,57 @@
+let korwin : string grammar =
+[ "zdanie", [[ N "cz1"; N "cz2"; N "cz3"; N "cz4"; N "cz5"; N "cz6"]]
+; "cz1", [[ T "Proszę zwrócić uwagę, że"];
+           [ T "I tak mam trzy razy mniej czasu, więc proszę mi pozwolić powiedzieć:"];
+           [ T "Państwo się śmieje, ale"];
+           [ T "Ja nie potrzebowałem edukacji seksualnej, żeby wiedzieć, że"];
+           [ T "No niestety:"];
+           [ T "Gdzie leży przyczyna problemu? Ja państwu powiem:"];
+           [ T "Państwo chyba nie widzą, że"];
+           [ T "Oświadczam kategorycznie:"];
+           [ T "Powtarzam:"]]
+; "cz2", [[ T " właściciele niewolników"];
+           [ T " związkowcy"];
+           [ T " trockiści"];
+           [ T " tak zwane dzieci kwiaty"];
+           [ T " rozmaici urzędnicy"];
+           [ T " federasi"];
+           [ T " etatyści"];
+           [ T " ci durnie i złodzieje"];
+           [ T " ludzie wybrani głosami meneli spod budki z piwem"]]
+; "cz3", [[ T " po przeczytaniu Manifestu komunistycznego"];
+           [ T " którymi się brzydzę"];
+           [ T " których nienawidzę"];
+           [ T " z okolic »Gazety Wyborczej«"];
+           [ T " czyli taka żydokomuna"];
+           [ T " odkąd zniesiono karę śmierci"];
+           [ T " którymi pogardzam"];
+           [ T " których miejsce w normalnym kraju jest w więzieniu"];
+           [ T " na polecenie Brukseli"]]
+; "cz4", [[ T " udają homoseksualistów"];
+           [ T " niszczą rodzinę"];
+           [ T " idą do polityki"];
+           [ T " zakazują góralom robienia oscypków"];
+           [ T " organizują paraolimpiady"];
+           [ T " wprowadzają ustrój, w którym raz na cztery lata można wybrać sobie pana"];
+           [ T " ustawiają fotoradary"];
+           [ T " wprowadzają dotacje"];
+           [ T " wydzielają buspasy"]]
+; "cz5", [[ T " żeby poddawać wszystkich tresurze"];
+           [ T " bo taka jest ich natura"];
+           [ T " bo chcą wszystko kontrolować"];
+           [ T " bo nie rozumieją, że socjalizm nie działa"];
+           [ T " żeby wreszcie zapanował socjalizm"];
+           [ T " dokładnie tak jak tow. Janosik"];
+           [ T " zamiast pozwolić ludziom zarabiać"];
+           [ T " żeby wyrwać kobiety z domu"];
+           [ T " bo to jest w interesie tak zwanych ludzi pracy"]]
+; "cz6", [[ T " co ma zresztą tyle samo sensu, co zawody w szachach dla debili."];
+           [ T " co zostało dokładnie zaplanowane w Magdalence przez śp. generała Kiszczaka."];
+           [ T " i trzeba być idiotą, żeby ten system popierać."];
+           [ T " ale nawet ja jeszcze dożyję normalnych czasów."];
+           [ T " co dowodzi, że wyskrobano nie tych, co trzeba."];
+           [ T " a zwykłym ludziom wmawiają, że im coś »dadzą«."];
+           [ T " – cóż: chcieliście (tfu!) demokracji, to macie."];
+           [ T " dlatego trzeba zlikwidować koryto, a nie zmieniać świnie."];
+           [ T " a wystarczyłoby przestać wypłacać zasiłki."]]
+];;

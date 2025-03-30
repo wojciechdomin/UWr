@@ -6,3 +6,8 @@ zad2.
 (0*10)*((0*1)|(0*10)) 
 zad. 3 i 4
 let parens_ok s= let opening c = c = '[' || c = '(' || c = '{' and good c d =  (c = '[' && d = ']') || (c = '(' && d = ')') || (c = '{' && d = '}') in let rec check xs stack = match xs with | [] -> stack = [] | y :: ys -> (if opening y then check ys (y :: stack) else (match stack with | [] -> false | z :: zs -> if good z y then check ys zs else false) ) in check (String.to_seq s |> List.of_seq) [];;
+----------------------------------------------
+let rec next_turn xs gram = match xs with | [] -> [] | N x :: xs' -> let productions = List.assoc x gram in let pos = Random.int (List.length productions) in (List.nth productions pos) @ (next_turn xs' gram) | T x :: xs' -> (T x) :: (next_turn xs' gram);;
+let rec is_terminal xs = match xs with | [] -> true | N x :: xs' -> false | T x :: xs' -> is_terminal xs';; 
+let generate gram start = let rec generate2 xs = if is_terminal xs then xs else generate2 (next_turn xs gram) in generate2 [N start] |> List.map (fun x -> match x with | N a -> failwith "!" | T b -> b) |> String.concat "";;
+
