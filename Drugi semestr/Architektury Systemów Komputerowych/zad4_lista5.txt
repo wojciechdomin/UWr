@@ -1,0 +1,43 @@
+puzzle(long rdi,unsigned esi){
+if(esi&esi == 0) goto L4;
+edx = 0;
+eax = 0;
+.L3: 
+ecx = rdi % (1<<32);
+ecx&=1;
+eax+=ecx;
+rdi >>=1;
+edx++;
+if(edx!=esi) goto L3;
+return eax;
+.L4:
+return esi;
+}
+--------------------------
+puzzle(long x,unsigned n){
+if(n == 0) return 0;
+edx = 0;
+eax = 0;
+.L3: 
+do{
+ecx = x % (1<<32);
+ecx&=1;
+eax+=ecx;
+x >>=1;
+edx++;
+} while(edx!=n);
+return eax;
+}
+--------------------------
+int puzzle(long x,unsigned n){
+if(n == 0) return 0;
+int i = 0;
+int result = 0;
+do{
+result+=x&1;
+x >>=1;
+i++;
+} while(i!=n);
+return result;
+}
+//liczy zapalone bity na pierwszych n pozycjach x
