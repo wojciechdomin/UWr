@@ -1,0 +1,75 @@
+zad1
+add128:
+addq %rdi, %rcx
+adcq %rdi, %rdx
+movq %rcx, %rax
+ret
+-----------------------
+zad2
+addu:
+addq %rdi, %rsi
+xorq %rax, %rax
+sbbq $0, %rax
+orq %rsi ,%rax
+ret
+---------------
+zad3
+cmp:
+subq %rdi, %rsi
+adcq %rsi, %rax
+negq %rsi
+sets %r8
+subq %r8, %rax
+ret
+---------------
+zad4
+int puzzle(long x,unsigned n){
+if(n == 0) return 0;
+int i = 0;
+int result = 0;
+do{
+result+=x&1;
+x >>=1;
+i++;
+} while(i!=n);
+return result;
+}
+//liczy zapalone bity na pierwszych n pozycjach x
+---------------------------------------
+zad6
+rsi -= 60;
+
+//jump 4006f8 + rsi*8;
+swith(rsi){
+case(0):
+case(1):
+//0x4005a1
+rax = rdi*8;
+break;
+case(4):
+//0x4005aa
+rax = rdi;
+rax >>= 3;
+break;
+case(2):
+//0x4005b2
+rax  =rdi;
+rax<=4;
+rax-=rdi;
+rdi = rax;
+case(5):
+//0x4005bf
+rdi = rdi*rdi;
+case(3):
+default: //rsi - 5 > 0 (jump above = ZF = 0 && CF = 0)
+//0x4005c3
+rax = rdi + 0x4b;
+break;
+}
+return rax;
+
+
+
+
+
+}
