@@ -1,0 +1,34 @@
+type ident = string
+
+type qbf =
+| Top (* ⊤ *)
+| Bot (* ⊥ *)
+| Var of ident (* x *)
+| Disj of qbf * qbf (* ∨ *)
+| Conj of qbf * qbf (* ∧ *)
+| Not of qbf (* ¬ *)
+| Forall of ident * qbf (* ∀ *)
+| Exists of ident * qbf (* ∃ *)
+
+let rec subst ( x : ident ) ( s : qbf ) ( f : qbf ) : qbf = 
+match f with
+| Var id -> if id = x then s else Var id
+| Disj (e1,e2) -> Disj (subst x s e1, subst x s e2)
+| Conj (e1,e2) -> Conj (subst x s e1, subst x s e2)
+| Not e1 -> Not (subst x s e1)
+| Forall (id, e1) -> if id = x then f else Forall (id,subst x s e1) 
+| Exists (id, e1) -> if id = x then f else Exists (id,subst x s e1)
+| _ -> f
+
+
+
+let rec eval ( f : qbf ) : bool = 
+match f with
+| Var id -> failwith ("zmienna wolna" ^ id ^  ", tak przecie nie wolno!")
+| Disj (e1,e2) -> (eval e1) || (eval e2)
+| Conj (e1,e2) -> (eval e1) && (eval e2)
+| Not e1 -> Bool.not (eval e1)
+| Forall (id, e1) -> (eval (subst id Top e1)) && (eval (subst id Bot e1))
+| Exists (id, e1) -> (eval (subst id Top e1)) || (eval (subst id Bot e1))
+| Top -> true
+| Bot -> false
