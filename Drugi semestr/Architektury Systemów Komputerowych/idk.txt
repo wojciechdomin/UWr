@@ -1,0 +1,33 @@
+zad.1
+
+pointless(long rdi, long* rsi){
+r14 = rsi;
+rbx = rdi;
+if(rdi <= 0) goto L1;
+rdi = 2 * rbx;
+rsi = rsp;
+
+rax = pointless(rdi, rsi) + rax;
+goto L3;
+L1: rax = 0;
+L3: rbx+=rax;
+*r14 = rbx;
+}
+
+---->
+
+pointless(long n, long* p){
+long rax;
+if(n <= 0){
+ rax = 0;
+}else{
+n*=2;
+p = rsp;
+
+rax += pointless(n, p) ;
+
+}
+n+=rax;
+*p = n;
+return rax;
+}

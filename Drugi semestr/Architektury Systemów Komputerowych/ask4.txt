@@ -1,0 +1,30 @@
+M: 
+ pushq %rdi //rdi jest caller-saved, czyli źle
+ testq %rdi, %rdi
+ je .L2
+ leaq -1(%rdi), %rdi
+ call M
+ movq %rax, %rdi
+ call F
+movq (%rsp), %rdi
+subq %rax, %rdi
+ .L2: movq %rdi, %rax
+ret
+
+
+
+
+
+
+ F: testq %rdi, %rdi
+je .L3
+ movq %rdi, %r12
+ leaq -1(%rdi), %rdi
+ call F
+movq %rax, %rdi
+ call M
+ subq %rax, %r12
+ movq %r12, %rax
+ ret
+ .L3: movl $1, %eax
+ ret
