@@ -1,0 +1,35 @@
+void merge1(long src1[], long src2[], long dest[], long n) {
+ long i1 = 0, i2 = 0;
+ while (i1 < n && i2 < n){
+//*dest++ = src1[i1] < src2[i2] ? src1[i1++] : src2[i2++];
+  bool ok = src1[i1] < src2[i2]; 
+  *dest = ok ? src1[i1] : src2[i2];
+  long i3 = ok ? i1 : i2;
+  *dest++;
+  i3++;
+  i1 = ok ? i3 : i1;
+  i2 = ok ? i3 : i2;
+ }
+ }
+--------------------------------------------------
+merge1(long*, long*, long*, long):
+        testq   %rcx, %rcx
+        jle     .L1
+        xorl    %eax, %eax
+.L4:
+        movq    (%rsi,%rax,8), %r8
+        movq    (%rdi,%rax,8), %r9
+        movq    %r8, %r10
+        cmpq    %r8, %r9
+        cmovle  %r9, %r10
+        addq    $8, %rdx
+        movq    %r10, -8(%rdx)
+        cmpq    %r8, %r9
+        setl    %r8b
+        movzbl  %r8b, %r8d
+        addq    %r8, %rax
+        cmpq    %rax, %rcx
+        jg      .L4
+.L1:
+        ret
+-------------------------------------------------------
