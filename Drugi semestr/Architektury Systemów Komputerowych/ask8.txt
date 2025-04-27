@@ -1,3 +1,5 @@
+==============================================================
+Zad.1
 void merge1(long src1[], long src2[], long dest[], long n) {
  long i1 = 0, i2 = 0;
  while (i1 < n && i2 < n){
@@ -33,3 +35,37 @@ merge1(long*, long*, long*, long):
 .L1:
         ret
 -------------------------------------------------------
+=======================================================
+Zad.2
+4 <= B <= 8, bo q->t na 8(%rsi)
+6 <= A <= 10, bo q->u na 32(%rsi)
+bo p->y na 184(%rdi), czyli A*B = 45 lub 46
+Zatem A = 9, B = 5
+=======================================================
+Zad. 4
+1 krok ->
+void proc(union elem* ptr){
+
+    union elem* rax = (*ptr).e2.next;
+    long* rdx = (*rax).e1.p;
+    long lrdx = *rdx;
+    long u = (*rax).e1.y;
+    lrdx-=u;
+    (*ptr).e2.x = lrdx;
+
+}
+2 krok ->
+void proc(union elem* ptr){
+    union elem* nastepny = (*ptr).e2.next;
+    (*ptr).e2.x = *((*nastepny).e1.p) - (*nastepny).e1.y;
+}
+kompiluje się do
+proc(elem*):
+        movq    8(%rdi), %rdx
+        movq    (%rdx), %rax
+        movq    (%rax), %rax
+        subq    8(%rdx), %rax
+        movq    %rax, (%rdi)
+        ret
+wg godbolta -O2
+==========================================================
