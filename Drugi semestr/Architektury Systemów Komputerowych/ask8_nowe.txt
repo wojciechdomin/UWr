@@ -1,0 +1,60 @@
+ puzzle7:
+ movq (%rdi), %rdx
+ leaq 8(%rdi), %rcx
+ xorl %eax, %eax
+ vxorps %xmm1, %xmm1, %xmm1
+ vmovss .LC1(%rip), %xmm2
+ .L2: cmpq %rdx, %rax
+ jge .L5
+ vfmadd231ss (%rcx,%rax,4), %xmm2, %xmm1
+ incq %rax
+ vmulss %xmm0, %xmm2, %xmm2
+ jmp .L2
+ .L5: vmovaps %xmm1, %xmm0
+ ret
+
+ .LC1: .long 0x3f800000
+
+
+---------------------------------------------------
+
+struct P{
+	long a;
+
+};
+
+ float puzzle7(struct P*, float):
+ rdx = (*P).a;
+ char* rcx = P+8; //char*? nie wiadomo na razie
+ rax = 0;
+ float xmm1 = 0.0 // 0
+ float xmm2 = 1.0 // 0x3f800000
+ .L2: 
+ if(rdx-rax>=0) goto L5
+ vfmadd231ss (%rcx,%rax,4), %xmm2, %xmm1
+ incq %rax
+ vmulss %xmm0, %xmm2, %xmm2
+ jmp .L2
+ .L5: vmovaps %xmm1, %xmm0
+ ret
+-----------------------------------------------------
+struct P{
+	long a;
+	float b[];
+};
+
+ float puzzle7(struct P*, float):
+ rdx = (*P).a;
+ float* rcx = P.b; //już wiadomo
+ rax = 0;
+ float xmm1 = 0.0 // 0
+ float xmm2 = 1.0 // 0x3f800000
+ .L2: 
+ while(rdx<rax){
+ xmm1 += rcx[rax]* xmm2;
+ rax++;
+ xmm2*=xmm0;
+ }
+ return xmm1;
+
+
