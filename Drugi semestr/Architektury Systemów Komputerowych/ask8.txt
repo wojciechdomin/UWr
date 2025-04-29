@@ -42,7 +42,7 @@ Zad.2
 bo p->y na 184(%rdi), czyli A*B = 45 lub 46
 Zatem A = 9, B = 5
 =======================================================
-Zad. 4
+Zad. 5
 1 krok ->
 void proc(union elem* ptr){
 
