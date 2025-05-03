@@ -1,0 +1,343 @@
+
+void swap(long * xp, long * yp) {
+ *xp = *xp + *yp; /* x+y */
+ *yp = *xp - *yp; /* x+y-y = x */
+ *xp = *xp - *yp; /* x+y-x = y */
+ }
+swap:
+        movq    (%rsi), %rax
+        addq    (%rdi), %rax
+        movq    %rax, (%rdi)
+        subq    (%rsi), %rax
+        movq    %rax, (%rsi)
+        subq    %rax, (%rdi)
+        ret
+3 odczyty, 3 zapisy (-O2)
+
+
+
+
+void swap(long *restrict xp, long *restrict yp) {
+ *xp = *xp + *yp; /* x+y */
+ *yp = *xp - *yp; /* x+y-y = x */
+ *xp = *xp - *yp; /* x+y-x = y */
+ }
+
+oraz 
+
+void swap2(long *xp, long *yp) {
+ long x = *xp, y = *yp;
+ x = x + y, y = x - y, x = x - y; // po kij?
+ *xp = x, *yp = y;
+ }
+
+generują ten sam kod
+
+swap:
+        movq    (%rsi), %rax
+        movq    (%rdi), %rdx
+        movq    %rax, (%rdi)
+        movq    %rdx, (%rsi)
+        ret
+2 odczyty, 2 zapisy (-O2)
+
+
+--------------------------------------------------------
+
+
+leaf
+Calls to external functions with this attribute must return to the current compilation unit only by return or by exception handling. In particular, a leaf function is not allowed to invoke callback functions passed to it from the current compilation unit, directly call functions exported by the unit, or longjmp into the unit. Leaf functions might still call functions from other compilation units and thus they are not necessarily leaf in the sense that they contain no function calls at all.
+
+The attribute is intended for library functions to improve dataflow analysis. The compiler takes the hint that any data not escaping the current compilation unit cannot be used or modified by the leaf function. For example, the sin function is a leaf function, but qsort is not.
+
+pure
+Calls to functions that have no observable effects on the state of the program other than to return a value may lend themselves to optimizations such as common subexpression elimination. Declaring such functions with the pure attribute allows GCC to avoid emitting some calls in repeated invocations of the function with the same argument values.
+
+The pure attribute prohibits a function from modifying the state of the program that is observable by means other than inspecting the function’s return value. However, functions declared with the pure attribute can safely read any non-volatile objects, and modify the value of objects in a way that does not affect their return value or the observable state of the program.
+
+from: https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html
+
+#include <stdlib.h>
+
+
+ __attribute__((leaf))
+ size_t my_strlen(const char *s);
+
+ const char *my_index(const char *s, char v) {
+ for (size_t i = 0; i < my_strlen(s); i++)
+ if (s[i] == v)
+ return &s[i];
+ return 0;
+ }
+
+my_index:
+        pushq   %r12
+        movl    %esi, %r12d
+        pushq   %rbp
+        movq    %rdi, %rbp
+        pushq   %rbx
+        xorl    %ebx, %ebx
+        jmp     .L2
+.L5:
+        cmpb    %r12b, 0(%rbp,%rbx)
+        je      .L8
+        addq    $1, %rbx
+.L2:
+        movq    %rbp, %rdi
+        call    my_strlen
+        cmpq    %rax, %rbx
+        jb      .L5
+        popq    %rbx
+        xorl    %eax, %eax
+        popq    %rbp
+        popq    %r12
+        ret
+.L8:
+        leaq    0(%rbp,%rbx), %rax
+        popq    %rbx
+        popq    %rbp
+        popq    %r12
+        ret
+
+
+#include <stdlib.h>
+
+__attribute__((pure))
+ __attribute__((leaf))
+ size_t my_strlen(const char *s);
+
+ const char *my_index(const char *s, char v) {
+ for (size_t i = 0; i < my_strlen(s); i++)
+ if (s[i] == v)
+ return &s[i];
+ return 0;
+ }
+
+my_index:
+        pushq   %rbx
+        movl    %esi, %ebx
+        subq    $16, %rsp
+        movq    %rdi, 8(%rsp)
+        call    my_strlen
+        movq    8(%rsp), %rdi
+        addq    %rdi, %rax
+        jmp     .L2
+.L4:
+        cmpb    %bl, (%rdi)
+        je      .L8
+        addq    $1, %rdi
+.L2:
+        cmpq    %rax, %rdi
+        jne     .L4
+        addq    $16, %rsp
+        xorl    %eax, %eax
+        popq    %rbx
+        ret
+.L8:
+        addq    $16, %rsp
+        movq    %rdi, %rax
+        popq    %rbx
+        ret
+
+
+ static long my_strlen(const char *s){
+    long len = 0;
+    while (*s++ != '\0') {
+        len++;
+    }
+    return len;
+ }
+
+ const char *my_index(const char *s, char v) {
+ for (long i = 0; i < my_strlen(s); i++)
+ if (s[i] == v)
+ return &s[i];
+ return 0;
+ }
+
+
+my_index:
+        xorl    %eax, %eax
+        cmpb    $0, (%rdi)
+        je      .L8
+        pushq   %r13
+        pushq   %r12
+        movl    %esi, %r12d
+        pushq   %rbp
+        movq    %rdi, %rbp
+        pushq   %rbx
+        xorl    %ebx, %ebx
+        subq    $8, %rsp
+        jmp     .L3
+.L4:
+        addq    $1, %rbx
+.L3:
+        leaq    1(%rbp), %rdi
+        call    strlen
+        cmpq    %rbx, %rax
+        jl      .L12
+        cmpb    %r12b, 0(%rbp,%rbx)
+        jne     .L4
+        addq    $8, %rsp
+        leaq    0(%rbp,%rbx), %rax
+        popq    %rbx
+        popq    %rbp
+        popq    %r12
+        popq    %r13
+        ret
+.L8:
+        ret
+.L12:
+        addq    $8, %rsp
+        xorl    %eax, %eax
+        popq    %rbx
+        popq    %rbp
+        popq    %r12
+        popq    %r13
+        ret
+
+=====================================================================================================================================
+zad.3
+NIE, nie udało się mu tego zrobić (żadnej z nich)
+
+void compute2(long *  a, long *b, long k) {
+    long n = 1 << k;
+    for (long i = 0; i < n; i++)
+    a[i * n] = a[i] = 0;
+
+    for (long i = 1; i < n; i++)
+    for (long j = 1; j < n; j++)
+    a[i * n + j] = i * j;
+
+    for (long i = 1; i < n; i++)
+    for (long j = 1; j < n; j++)
+    b[i * n + j] = a[i * n + j]
+     + a[(i - 1) * n + (j - 1)];
+ }
+
+void compute2(long *  a, long *b, long k) {
+    long n = 1 << k;
+    for (long i = 0; i < n; i++)
+    a[i * n] = a[i] = 0;
+
+    for (long i = 1; i < n; i++)
+    for (long j = 1; j < n; j++){
+    a[i * n + j] = i * j;
+    b[i * n + j] = a[i * n + j]
+     + a[(i - 1) * n + (j - 1)];
+    }
+ }
+
+
+void compute2(long *  a, long *b, long k) {
+    long n = 1 << k;
+    for (long i = 0; i < n; i++)
+    a[i << k] = a[i] = 0;
+    
+    long m = 1 << (2*k);
+    long l = n-1;
+    for (long i = n+1; i < m; i++)
+    {
+    a[i] = (i>>k) * (i&l);
+    b[i] = a[i]
+     + a[i - n - 1];
+    }
+ }
+
+
+*************************
+rematerialization
+
+void compute2(long *  a, long *b, long k) {
+    long n = 1 << k;
+    for (long i = 0; i < n; i++)
+    a[i << k] = a[i] = 0;
+    
+    long m = 1 << (2*k);
+    long l = n-1;
+    for (long i = n+1; i < m; i++)
+    {
+    a[i] = (i>>k) * (i&l);
+    b[i] = (i>>k) * (i&l) + ((i-n-1)>>k) * ((i-n-1)&l);
+    }
+ }
+==========================================================================================================
+
+foobar:
+        testq   %rsi, %rsi
+        je      .L1
+        subq    %rcx, %rdx
+        leaq    (%rdi,%rsi,8), %rax
+        imulq   %rdx, %rdx
+.L3:
+        movq    %rdx, (%rdi)
+        addq    $8, %rdi
+        addq    $7, %rdx
+        cmpq    %rax, %rdi
+        jne     .L3
+.L1:
+        ret
+
+
+
+
+
+if (rsi == 0) return;
+rdx-= rcx;
+rax = &rdi[rsi];
+rdx*=rdx;
+
+.L3:
+*rdi = rdx;
+rdi++;
+rdx+=7;
+if (rax != rdi) goto L3;
+
+return;
+
+
+-----------------
+
+if (rsi == 0) return;
+rdx-= rcx;
+rax = &rdi[rsi];
+rdx*=rdx;
+
+.L3:
+*rdi = rdx;
+rdi++;
+rdx+=7;
+if (rax != rdi) goto L3;
+
+return;
+
+--------------------------
+
+In computer science, an induction variable is a variable that gets increased or decreased by a fixed amount on every iteration of a loop or is a linear function of another induction variable
+In computer programming, loop-invariant code consists of statements or expressions (in an imperative programming language) that can be moved outside the body of a loop without affecting the semantics of the program. 
+[Wikipedia]
+
+if(n==0) return;
+long* end = &a[n]; 
+y = (y-z)*(y-z);
+do{
+*a++ = y;
+y+=7; //strength reduction mnożenia do serii dodawań
+}while(a != end);
+return;
+
+
+-------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
