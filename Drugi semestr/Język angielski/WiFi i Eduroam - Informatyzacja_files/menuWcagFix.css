@@ -1,0 +1,7 @@
+.bs-disable-scrolling {
+  overflow: hidden;
+}
+.wp-block-button.is-style-outline .wp-block-button__link.wcag_set_contrast_fonts_color_1:hover,
+.wp-block-button.is-style-outline .wp-block-button__link.wcag_set_contrast_fonts_color_2:hover{
+  background-color: #0170B9 !important;
+}

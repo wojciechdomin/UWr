@@ -1,0 +1,39 @@
+.bs-baner {
+  width: 100%;
+  height: fit-content;
+  background-color: #223347;
+}
+.bs-baner__text {
+  font-size: 3vw;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  text-shadow: 0px 3px 6px #00000080;
+}
+.bs-baner__text--right {
+  color: white;
+  text-align: right;
+}
+.bs-baner__text--left {
+  color: #009fe3;
+  text-align: left;
+}
+@media only screen and (max-width: 700px) {
+  .bs-baner__text {
+    font-size: 4vw;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .bs-baner__text {
+    font-size: 23px;
+  }
+}
+.bs-baner__padding {
+  padding-top: 3vw;
+  padding-bottom: 0px;
+}
+.bs-baner__paddingb {
+  padding-bottom: 3vw;
+}
+.bs-baner__paddingt {
+  padding-top: 0px;
+}

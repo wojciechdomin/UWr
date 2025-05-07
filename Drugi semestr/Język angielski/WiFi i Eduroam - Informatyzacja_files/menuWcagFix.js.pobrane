@@ -1,0 +1,66 @@
+(() => {
+  function toggleBodyScroll() {
+    if (document.body.classList.contains("bs-disable-scrolling")) {
+      document.body.classList.remove("bs-disable-scrolling");
+    } else {
+      document.body.classList.add("bs-disable-scrolling");
+    }
+  }
+  function stopScrolling() {
+    const site = document.querySelector(".hfeed.site");
+    if (site.classList.contains("bs-stop-scrolling")) {
+      site.classList.remove("bs-stop-scrolling");
+    } else {
+      site.classList.add("bs-stop-scrolling");
+    }
+  }
+  const menu = document.querySelector("#ast-hf-mobile-menu");
+  if (menu) {
+    const items = menu.querySelectorAll("a > [tabindex]");
+    items.forEach((item) => {
+      item.removeAttribute("tabindex");
+    });
+  }
+
+  /**
+   * Toggle scrolling on menu items
+   */
+  const menuButton = document.querySelector(
+    ".menu-toggle.main-header-menu-toggle.ast-mobile-menu-trigger-minimal"
+  );
+  if (menuButton) {
+    menuButton.addEventListener("click", () => {
+      toggleBodyScroll();
+      stopScrolling();
+    });
+  }
+
+  /**
+   * Toggle scrolling on custom menu items
+   */
+  const customMobileMenuContainer = document.querySelector(
+    ".bs_add_mobile_custom_menu"
+  );
+
+  if (customMobileMenuContainer) {
+    const targets = [
+      "bs_mobile-menu__header_arrow",
+      "bs_mobile-nav__item",
+      "bs_mobile-nav__item__text",
+      "bs_mobile-menu__header_arrow",
+      "bs_mobile-menu__header_text",
+      "bs_mobile-menu__header",
+    ];
+    document.body.addEventListener("click", (e) => {
+      if (targets.some((className) => e.target.classList.contains(className))) {
+        toggleBodyScroll();
+      }
+    });
+  }
+
+  // Disable skiplinks
+  const skiplinks = document.querySelectorAll(
+    ".hfeed.site .skip-link.screen-reader-text"
+  );
+  skiplinks.forEach((skiplink) => (skiplink.style.display = "none"));
+})();

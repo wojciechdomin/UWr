@@ -1,0 +1,22 @@
+// Add warnings when opening links in a new page
+(() => {
+  if (typeof linkWarningsTranslations === "undefined") return;
+
+  const links = document.querySelectorAll('[target="_blank"]');
+
+  links.forEach((link) => {
+    link.setAttribute(
+      "aria-label",
+      `${link.innerText}. ${linkWarningsTranslations.link}`
+    );
+  });
+
+  const emails = document.querySelectorAll('[href^="mailto"]');
+
+  emails.forEach((email) => {
+    email.setAttribute(
+      "aria-label",
+      `${email.innerText}. ${linkWarningsTranslations.email}`
+    );
+  });
+})();

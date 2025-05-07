@@ -1,0 +1,57 @@
+/* Page */
+.bs__shortcuts {
+  background: #ececec;
+  padding-bottom: 40px;
+}
+
+.entry-content .bs__shortcuts__block-title {
+  font-size: 5.5vw;
+  font-weight: 700;
+  margin-left: 6.5%;
+  margin-right: 6.5%;
+  padding-top: 40px;
+  text-align: right;
+}
+
+.bs__shortcuts__nav {
+  background-color: #dc5a04;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 10vw;
+  margin-top: 50px;
+}
+
+.bs__shortcuts__nav-item {
+  font-family: 'Raleway', Sans-serif;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 45px;
+  margin: 3vw 0;
+  color: black;
+  padding: 23px 5vw;
+  border-radius: 0 10px 10px 10px;
+  border: solid 3px #dc5a04;
+}
+
+.bs__shortcuts__nav-item:hover {
+  border-color: black;
+  cursor: pointer;
+}
+
+.bs__shortcuts__nav-item a {
+  color: black;
+  text-decoration: none;
+}
+
+.bs__shortcuts__image {
+  box-sizing: border-box;
+  margin-top: 0px;
+  margin-bottom: 60px;
+  padding: 100px 0px 100px 0px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 15vw;
+}

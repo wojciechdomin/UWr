@@ -1,0 +1,28 @@
+(() => {
+  const backgroundContainer = document.querySelector(
+    ".bs-container__background"
+  );
+  const container = document.querySelector(".bs-container");
+
+  if (container && backgroundContainer) {
+    const departments = container.querySelectorAll(
+      ".bs-container__department-box__wrapper__title-text__link"
+    );
+    departments.forEach((department) => {
+      department.addEventListener("mouseenter", (e) => {
+        const departmentLink = e.target;
+        const backgroundURL = departmentLink.dataset.background;
+        backgroundContainer.style.backgroundImage = `url('${backgroundURL}')`;
+        backgroundContainer.style.animation = `example 1s`;
+        backgroundContainer.style.transitionDuration = `2s`;
+        backgroundContainer.style.transitionProperty = `opacity`;
+        backgroundContainer.style.opacity = `1`;
+      });
+    });
+    departments.forEach((department) => {
+      department.addEventListener("mouseleave", (e) => {
+        backgroundContainer.removeAttribute("style");
+      });
+    });
+  }
+})();

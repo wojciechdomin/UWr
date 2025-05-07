@@ -1,0 +1,20 @@
+/* Editor */
+.bs_edit__breadcrumbs {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  color: black;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}
+hr.block-editor-block-list__block {
+	pointer-events: none;
+    opacity: 0.5;
+    background: #CCC;
+}

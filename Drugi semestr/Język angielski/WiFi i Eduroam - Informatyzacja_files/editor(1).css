@@ -1,0 +1,55 @@
+/* Editor */
+.bs_edit__shortcuts {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  color: black;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.bs_edit__shortcuts__block-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.bs_edit__shortcuts__nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #dc5a04;
+}
+
+.bs_edit__shortcuts__nav-item {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bs_edit__shortcuts__label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.bs_edit__shortcuts__label--row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+
+.bs_edit__shortcuts__field-desc {
+  font-weight: 700;
+  font-size: 12px;
+  margin: 5px !important;
+}
+
+.bs_edit__shortcuts__input {
+  border: 5px solid black;
+  line-height: 12px;
+  font-size: 12px;
+  height: fit-content;
+  margin: 5px;
+}

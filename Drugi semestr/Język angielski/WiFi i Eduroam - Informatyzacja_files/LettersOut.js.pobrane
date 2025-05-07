@@ -1,0 +1,37 @@
+(() => {
+  const departmentsBoxes = document.querySelectorAll(
+    ".bs-container__department-box__wrapper"
+  );
+
+  departmentsBoxes.forEach((departmentBox) => {
+    const title = departmentBox.querySelector(
+      ".bs-container__department-box__wrapper__title-text__link"
+    );
+
+    title.addEventListener("mouseover", (e) => {
+      const thisTitle = e.target;
+      const modifierClass = thisTitle.dataset.modifierClass;
+
+      const letter = document.querySelector(
+        `.bs-container__department-box__wrapper__letters--${modifierClass}`
+      );
+
+      letter.classList.add(
+        "bs-container__department-box__wrapper__letters--hidden"
+      );
+    });
+
+    title.addEventListener("mouseleave", (e) => {
+      const thisTitle = e.target;
+      const modifierClass = thisTitle.dataset.modifierClass;
+
+      const letter = document.querySelector(
+        `.bs-container__department-box__wrapper__letters--${modifierClass}`
+      );
+
+      letter.classList.remove(
+        "bs-container__department-box__wrapper__letters--hidden"
+      );
+    });
+  });
+})();

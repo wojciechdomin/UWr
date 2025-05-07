@@ -1,0 +1,119 @@
+.wydarzenia-block {
+    border-top: 4px solid var(--wydzialowy-ciemny);
+    background: white;
+    padding: 4% 6.5% 4%;
+    margin-top:50px;
+    width: 100%;
+}    
+
+#content .wydarzenia-block-naglowek {
+	font-size: 5.5vw;
+    font-weight: 700;
+    padding-top: 40px;
+	text-align: right;
+}
+
+.element-wydarzenia-wrap, .element-wydarzenia-wrap-more{
+	border-radius: 0 10px 10px 10px !important;
+	padding:45px 35px;
+	margin:auto;
+	min-height:22vw;
+}
+
+#content .element-wydarzenia-more .element-wydarzenia-wrap-more{
+	padding-top: 200px;
+}
+
+.wydarzenia-block  > div:first-of-type {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.wydarzenia-block .element-wydarzenia, .wydarzenia-block .element-wydarzenia-more {
+    width: 100% !important;
+}
+
+.element-wydarzenia-wrap, .element-wydarzenia a {
+    height: 100% !important;
+}
+
+.element-wydarzenia .bg-element{
+	background-color:#F1F1F1;
+}
+
+.bst-aniamted-border-card{
+	background-image: linear-gradient(
+90deg
+,var(--wydzialowy-ciemny) 100%,var(--wydzialowy-ciemny) 0),linear-gradient(
+180deg
+,var(--wydzialowy-ciemny) 100%,var(--wydzialowy-ciemny) 0),linear-gradient(
+90deg
+,var(--wydzialowy-ciemny) 100%,var(--wydzialowy-ciemny) 0),linear-gradient(
+180deg
+,var(--wydzialowy-ciemny) 100%,var(--wydzialowy-ciemny) 0);
+}
+
+.element-wydarzenia-wrap{
+    border: solid 5px transparent;
+}
+
+.element-wydarzenia a{
+    color: #000;
+    display: block;
+}
+
+#content .element-wydarzenia-wrap-data {
+    font-size: 1.4vw;
+    font-weight: 600;
+}
+
+#content  .element-wydarzenia-wrap-title {
+    font-size: 1.2vw;
+    font-weight: 600;
+	margin-bottom: 15px !important;
+}
+
+#content .element-wydarzenia-wrap-content {
+    font-size: 1.1vw;
+    font-weight: 500;
+    line-height: 28px;
+    line-height: 1.2;
+}
+
+.row-button a{
+    display: block;
+}
+.row-button .button2{
+    margin-left: 40%;
+    margin-right: 40%;
+	margin-top: 100px;	
+}
+
+.clear{
+	clear:both
+}
+#content .wydarzenia-paginacja{
+    border-radius: 50%;
+    background-color: #000!important;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+	.element-wydarzenia { 
+	    width:100%;
+		display: block;
+		float:none;
+		margin-top:50px;
+	}
+    .element-wydarzenia-wrap, .element-wydarzenia-wrap-more {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .wydarzenia-block  > div:first-of-type {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

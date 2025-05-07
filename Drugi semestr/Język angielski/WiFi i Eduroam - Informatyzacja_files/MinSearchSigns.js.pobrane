@@ -1,0 +1,23 @@
+window.addEventListener('load', () => {
+document.querySelectorAll('form[role=search]').forEach((item, i) => {
+  if(typeof bs_MinSearchSigns === "undefined") return;
+  item.addEventListener('submit',(e) => {
+    if(item.s.value.length <= bs_MinSearchSigns.min_signs)
+    {
+      e.preventDefault();
+      if(item.querySelector('#spn') == null)
+      {
+        let span = document.createElement('span');
+        span.style.color = "red";
+        span.innerHTML = "<br><br>Wpisywana fraza musi się składać z conajmniej "+bs_MinSearchSigns.min_signs+" znaków."
+        span.setAttribute('tabindex', '0')
+        item.appendChild(span);
+        span.id='spn';
+        item.style.flexWrap = 'wrap';
+        item.querySelector('#spn').focus();
+      }
+    }
+  });
+});
+});
+

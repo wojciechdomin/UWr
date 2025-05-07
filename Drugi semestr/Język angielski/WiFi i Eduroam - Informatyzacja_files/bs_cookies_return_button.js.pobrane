@@ -1,0 +1,36 @@
+(() => {
+  /**
+   * Init variables
+   */
+  const prevURL = document.referrer;
+  const button = document.getElementById("bs-return-to-main-site-button");
+  const networkURL = button.getAttribute("data-network-site-url");
+  const currentURL = window.location.href;
+  const hostName = `https://${window.location.hostname}/`;
+
+  /**
+   * Stop if elements are not found
+   */
+  if (!button && !prevURL) return;
+
+  /**
+   * Show button if user was redirected from regional portal to partner site(excluding partner's main page)
+   */
+  if (
+    prevURL.includes(networkURL) &&
+    !currentURL.includes(networkURL) &&
+    currentURL !== hostName
+  ) {
+    /**
+     * Show button
+     */
+    button.classList.remove("bs-cookies__return-button--hidden");
+
+    /**
+     * Return to previous page on click
+     */
+    button.addEventListener("click", (e) => {
+      window.history.back();
+    });
+  }
+})();

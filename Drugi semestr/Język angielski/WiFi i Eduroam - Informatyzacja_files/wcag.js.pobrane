@@ -1,0 +1,633 @@
+/**
+ * SECTION Variables
+ * Add class to body tag if the site is the Main Site of network
+ */
+(() => {
+  if (typeof bsWcagVariables === "undefined") return;
+
+  if (bsWcagVariables.isMainSite) {
+    document.body.classList.add("bst-is-main-site");
+  }
+
+  const blokLink = document.querySelector(".bs-baner-second-column .bs-baner-text__link");
+
+  if (blokLink) {
+    blokLink.setAttribute("tabindex", "-1");
+    const p = blokLink.querySelector("p");
+    if (p) p.setAttribute("tabindex", "0");
+    p.addEventListener('keydown', (e) => {
+      if (e.key === "Enter") {
+        blokLink.click();
+      }
+    })
+  }
+})();
+// !SECTION
+
+/**
+ * SECTION Add ID to Units block
+ * TODO - remove after modifying IDSidebarMenu module
+ */
+(() => {
+  const unitsBlock = document.querySelector(".bs__units");
+  if (unitsBlock) unitsBlock.setAttribute("id", "bs__units-block");
+})();
+// !SECTION
+
+/**
+ * SECTION Fixes
+ * Add fixes to various blocks
+ */
+(() => {
+  //tabindex newsletter
+
+  const newsBox = document.querySelector(
+    ".site-below-footer-wrap.ast-builder-grid-row-container"
+  );
+  if (newsBox) {
+    newsBox.setAttribute("tabindex", "0");
+    newsBox.setAttribute("role", "button");
+    newsBox.setAttribute("title", "zapisz się do newslettera");
+    newsBox.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        newsBox.click();
+      }
+    });
+  }
+
+  //click event
+
+  const boxs_content = document.querySelectorAll(".ugb-image-box__content");
+  boxs_content.forEach((content) => {
+    content.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        const a = content.querySelector("a");
+        a.click();
+      }
+    });
+  });
+
+  //focus box
+
+  const block = document.querySelector(".ugb-image-box__overlay-link");
+  if (block) {
+    block.addEventListener("focus", (e) => {
+      const background = document.querySelector(
+        ".ugb-image-box__box.ugb-image-box__overlay-hover"
+      );
+      const text = document.querySelector(".ugb-image-box__description");
+
+      background.style.opacity = "0.8";
+      text.style.opacity = "1";
+      text.style.border = "2px solid yellow";
+    });
+
+    block.addEventListener("blur", (e) => {
+      const background = document.querySelector(
+        ".ugb-image-box__box.ugb-image-box__overlay-hover"
+      );
+      const text = document.querySelector(".ugb-image-box__description");
+
+      background.style.opacity = "0";
+      text.style.opacity = "0";
+      text.style.border = "unset";
+    });
+  }
+
+  //newsletter
+
+  function news() {
+    // logo
+
+    const logoMenuLink = document.querySelector(
+      ".header-widget-area[data-section='sidebar-widgets-header-widget-1'] a"
+    );
+    if (logoMenuLink) {
+      logoMenuLink.setAttribute("title", "logo uczelnia badawcza");
+    }
+
+    // language
+
+    const boxLangs = document.querySelectorAll("a.wpml-ls-link");
+
+    if (boxLangs) {
+      boxLangs.forEach((boxLang) => {
+        const spanLang = boxLang.querySelector("span");
+
+        lang = spanLang.innerText;
+
+        if (lang == "EN") {
+          boxLang.setAttribute("title", "zmień na język angielski");
+        } else {
+          boxLang.setAttribute("title", "zmień na język polski");
+        }
+      });
+    }
+
+    const checkbox = document.querySelector(
+      ".formfield__inner__checkbox input"
+    );
+    if (checkbox) {
+      checkbox.addEventListener("keydown", (e) => {
+        if (e.key == "Enter") {
+          checkbox.click();
+        }
+      });
+    }
+
+    newsletter = document.querySelector(".brave_popupSections__wrap");
+    if (newsletter) {
+      const closeButton = document.querySelector(
+        ".brave_popup__close.brave_popup__close--inside_right"
+      );
+      closeButton.setAttribute("title", "zamknij okno");
+
+      newsletter.addEventListener("keydown", (e) => {
+        if (e.key == "Escape") {
+          closeButton.click();
+        }
+      });
+    }
+  }
+  setTimeout(news, 1000);
+
+  // zdjęcie
+
+  const singleCarts = document.querySelectorAll(
+    ".single-cat-article-long .read-more a"
+  );
+
+  if (singleCarts) {
+    singleCarts.forEach((singleCart) => {
+      singleCart.setAttribute("tabindex", "-1");
+    });
+  }
+  //aktualnosci
+  const NewsTitle = document.querySelectorAll(
+    ".single-cat-article-grid .single-article-title a"
+  );
+
+  if (NewsTitle) {
+    NewsTitle.forEach((title) => {
+      title.setAttribute("tabindex", "-1");
+    });
+  }
+
+  //target blank
+  const advertisment = document.querySelector(
+    "#wp-admin-bar-wpseo-kwresearch-default"
+  );
+  if (advertisment) {
+    const targets = advertisment.querySelectorAll(".ab-item");
+    targets.forEach((target) => {
+      target.setAttribute("target", "");
+    });
+  }
+
+  const logo = document.querySelector(".custom-logo-link");
+  if (logo) {
+    logo.setAttribute("tabindex", "-1");
+  }
+
+  const spans = document.querySelectorAll(".soc_square span");
+
+  if (spans) {
+    spans.forEach((span) => {
+      span.remove();
+    });
+  }
+
+  const socialBox = document.querySelector(".mks_social_widget_ul");
+  if (socialBox) {
+    socialBox.setAttribute("id", "social__widget_box");
+  }
+
+  //mapa iframe
+
+  const map = document.querySelector(".wp-block-webfactory-map iframe");
+
+  if (map) {
+    map.setAttribute("title", "mapa");
+  }
+  // formularz
+  function formTab() {
+    const formBox = document.querySelector(
+      "#ipt_fsqm_form_12_tab_0_control_li"
+    );
+
+    if (formBox) {
+      formBox.setAttribute("tabindex", "-1");
+    }
+  }
+
+  setTimeout(formTab, 2500);
+
+  /**
+   * SECTION ACCORDION
+   * Add fixes to various blocks
+   */
+  function addTabIndex() {
+    const acordeons = document.querySelectorAll(".wp-block-ugb-accordion");
+    acordeons.forEach((acordeon) => {
+      const links = acordeon.querySelectorAll("a");
+      links.forEach((link) => {
+        link.setAttribute("tabindex", "-1");
+      });
+    });
+  }
+  const acordeons = document.querySelectorAll(".wp-block-ugb-accordion");
+  acordeons.forEach((acordeon) => {
+    const titleAccordeon = acordeon.querySelector(".ugb-accordion__title");
+
+    titleAccordeon.setAttribute("title", "element rozwijany zwinięty");
+    const state = acordeon.getAttribute("aria-expanded");
+
+    //without open
+    if (state == "false") {
+      const links = acordeon.querySelectorAll("a");
+      links.forEach((link) => {
+        link.setAttribute("tabindex", "-1");
+      });
+      titleAccordeon.setAttribute("title", "element rozwijany zwinięty");
+    } else {
+      const links = acordeon.querySelectorAll("a");
+      links.forEach((link) => {
+        link.setAttribute("tabindex", "0");
+      });
+      titleAccordeon.setAttribute("title", "element rozwijany rozwinęty");
+    }
+
+    //with open
+    acordeon.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        const state1 = acordeon.getAttribute("aria-expanded");
+
+        if (state1 == "false") {
+          addTabIndex();
+          const links = acordeon.querySelectorAll("a");
+          links.forEach((link) => {
+            link.setAttribute("tabindex", "0");
+          });
+          titleAccordeon.setAttribute("title", "element rozwijany rozwinęty");
+          const breadcrumbs = document.querySelectorAll(
+            ".bs_breadcrumb_trail a"
+          );
+          breadcrumbs.forEach((bredcrumb) => {
+
+            if (breadcrumbs[breadcrumbs.length - 1] == bredcrumb) {
+              bredcrumb.setAttribute("tabindex", "-1");
+            } else {
+              bredcrumb.setAttribute("tabindex", "0");
+            }
+
+          });
+        } else {
+          const links = document.querySelectorAll("a");
+          links.forEach((link) => {
+            link.setAttribute("tabindex", "-1");
+          });
+          titleAccordeon.setAttribute("title", "element rozwijany zwinięty");
+          const breadcrumbs = document.querySelectorAll(
+            ".bs_breadcrumb_trail a"
+          );
+          breadcrumbs.forEach((bredcrumb) => {
+            bredcrumb.setAttribute("tabindex", "0");
+          });
+        }
+      }
+    });
+
+    acordeon.addEventListener("click", (e) => {
+      const state1 = acordeon.getAttribute("aria-expanded");
+
+      if (state1 == "false") {
+        addTabIndex();
+        const links = acordeon.querySelectorAll("a");
+        links.forEach((link) => {
+          link.setAttribute("tabindex", "-1");
+        });
+        titleAccordeon.setAttribute("title", "element rozwijany rozwinęty");
+      } else {
+        const links = document.querySelectorAll("a");
+        links.forEach((link) => {
+          link.setAttribute("tabindex", "0");
+        });
+        titleAccordeon.setAttribute("title", "element rozwijany zwinięty");
+      }
+    });
+  });
+  //!SECTION
+})();
+// !SECTION
+
+/**
+ * SECTION WCAG ICON
+ * Fix style for wcag icon on main site
+ * */
+(() => {
+  const header = document.getElementById("ast-desktop-header");
+  if (!header) return;
+
+  const button = header.querySelector(
+    ".bs_witryna_glowna .bs_wcag_shortcode_button_wcag-icon"
+  );
+
+  if (button) {
+    button.classList.add("bs_wcag_shortcode_button_wcag-icon--white");
+  } else {
+    const button = header.querySelector(".bs_wcag_shortcode_button_wcag-icon");
+    if (button)
+      button.classList.remove("bs_wcag_shortcode_button_wcag-icon--white");
+  }
+
+  // remove title links
+
+  const titleLinks = document.querySelectorAll(".ugb-accordion__title a");
+  titleLinks.forEach((link) => {
+    link.remove();
+  });
+
+  // alty dla elementów programu kategorii
+
+  const programCarts = document.querySelectorAll(".element-ogloszenia-wrap");
+  if (programCarts) {
+    programCarts.forEach((cart) => {
+      const img = cart.querySelector("img");
+      const name = cart.querySelector(
+        ".element-ogloszenia-wrap-title"
+      ).textContent;
+      if (img) img.setAttribute("alt", `logo ${name}`);
+    });
+  }
+  //title download
+  const fileLinks = document.querySelectorAll(".bs__file-list__list a");
+  fileLinks.forEach((link) => {
+    link.setAttribute("title", "pobierz");
+  });
+
+  //search tabindex
+
+  const searchIcon = document.querySelector(
+    ".widget_search .search-form input[type=submit].search-submit"
+  );
+  const searchIconID = document.querySelector(
+    ".wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper .wp-block-search__button"
+  );
+  if (searchIcon) {
+    searchIcon.setAttribute("tabindex", "-1");
+  }
+  if (searchIconID) {
+    searchIconID.setAttribute("aria-label", "szukaj");
+  }
+  const searchInput = document.querySelector("input.wp-block-search__input-1");
+  const searchInputID = document.querySelector("#wp-block-search__input-1");
+  if (searchInput) {
+    searchInput.setAttribute("title", "szukaj");
+  }
+  if (searchInputID) {
+    searchInputID.setAttribute("title", "szukaj");
+  }
+  // !SECTION
+  /**
+   * SECTION Hover News
+   * Add hover event to target news
+   */
+  const boxLinks = document.querySelectorAll(".news-box a");
+  if (boxLinks) {
+    boxLinks.forEach((link) => {
+      link.addEventListener("focus", (e) => {
+        const overlay = link.querySelector(".second-box-overlay");
+        overlay.style.background = "rgba(0, 0, 0, 0.578)";
+        const content = link.querySelector(".news-box-content");
+        content.style.opacity = "1";
+      });
+
+      link.addEventListener("blur", (e) => {
+        const overlay = link.querySelector(".second-box-overlay");
+        overlay.style.background = "transparent";
+        const content = link.querySelector(".news-box-content");
+        content.style.opacity = "0";
+      });
+    });
+  }
+  // !SECTION
+})();
+
+/**
+ * SECTION Mobile Menu
+ * Add link the to mobile menu header. Hide header added via ::after pseudo element and prepend new link
+ * */
+(() => {
+  const headerText = window
+    .getComputedStyle(
+      document.querySelector(".ast-main-header-wrap.main-header-bar-wrap"),
+      ":after"
+    )
+    .getPropertyValue("content");
+
+  const link = document.createElement("a");
+  const innerText = headerText.replaceAll('"', "");
+
+  if (!innerText) {
+    link.innerText = innerText;
+  } else {
+    link.innerText = "Uniwersytet Wrocławski";
+  }
+
+  link.href = "https://uwr.edu.pl";
+  link.classList.add("bs-mobile-menu-header-link");
+
+  const parent = document.querySelector(
+    "#ast-mobile-header .ast-main-header-wrap.main-header-bar-wrap .site-branding.ast-site-identity"
+  );
+
+  if (parent) parent.prepend(link);
+})();
+//!SECTION
+
+/**
+ * SECTION - SMART SLIDER
+ * Fix focus snap on slider buttons
+ * */
+(() => {
+  const buttons = document.querySelectorAll(
+    "#n2-ss-2-arrow-next, #n2-ss-2-arrow-previous"
+  );
+  buttons.forEach((button) => {
+    button.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        setTimeout(() => {
+          e.target.focus();
+        }, 1000);
+      }
+    });
+  });
+})();
+//!SECTION
+
+// !SECTION
+/**
+ * SECTION aria-label
+ * Add aria-label to links in menu
+ */
+(() => {
+  const menuLinks = document.querySelectorAll("li.menu-item a");
+  menuLinks.forEach((link) => {
+    const text = link.innerText;
+    link.setAttribute("title", `przejdź do ${text}`);
+  });
+})();
+// !SECTION
+// !SECTION
+/**
+ * SECTION newsletter
+ * Add aria-label to newsletter
+ */
+(() => {
+  const newsletter = document.querySelector(
+    ".footer-widget-area[data-section='sidebar-widgets-footer-widget-4']"
+  );
+  if (newsletter) {
+    newsletter.setAttribute("aria-label", "");
+  }
+})();
+// !SECTION
+// !SECTION
+/**
+ * SECTION pagination
+ * Add title to pagination
+ */
+(() => {
+  const paginations = document.querySelectorAll(
+    ".ast-pagination .page-numbers"
+  );
+  if (paginations) {
+    paginations.forEach((pagination) => {
+      const number = pagination.textContent;
+      pagination.setAttribute("title", `Przejdź do strony ${number}`);
+    });
+  }
+  const next = document.querySelector(".next.page-numbers");
+  if (next) {
+    next.setAttribute("title", `Przejdź do następnej strony`);
+  }
+  const nextBtn = document.querySelector("form#goToPageForm button");
+  if (nextBtn) {
+    nextBtn.setAttribute("title", `Przejdź przycisk`);
+  }
+
+  const anotherPaginations = document.querySelectorAll(
+    ".pagination-numbers .page-numbers"
+  );
+  if (anotherPaginations) {
+    anotherPaginations.forEach((pagination) => {
+      const number = pagination.textContent;
+      pagination.setAttribute("title", `Przejdź do strony ${number}`);
+    });
+  }
+  const page_number = document.querySelector("#page_number");
+  if (page_number) {
+    page_number.setAttribute("title", `Przejdź do strony`);
+  }
+})();
+// !SECTION
+
+/**
+ * SECTION pagination
+ * Add title to pagination
+ */
+(() => {
+  const attachments = document.querySelectorAll(".files-list .delete-file");
+  if (!attachments) return;
+  attachments.forEach((attachment) => {
+    attachment.setAttribute("tabindex", "0");
+    attachment.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        attachment.click();
+      }
+    });
+  });
+})();
+// !SECTION
+
+/**
+ * SECTION pagination
+ * mobile menu recreate view
+ */
+(() => {
+  const elements = document.querySelectorAll(
+    "#ast-hf-mobile-menu li.menu-item.menu-item-type-custom.menu-item-has-children"
+  );
+
+  elements.forEach((element) => {
+    const link = element.querySelector("a.menu-link");
+    const button = element.querySelector("button.ast-menu-toggle");
+    const text = link.innerHTML;
+    const title = link.getAttribute("title");
+    const p = document.createElement("p");
+    p.classList.add("bs-list-element-name");
+    p.innerHTML = text;
+    if (button) {
+      button.setAttribute("title", `${title}`);
+      button.prepend(p);
+    }
+
+    link.remove();
+  });
+
+})();
+// !SECTION
+
+/**
+ * SECTION form checkbox
+ */
+(() => {
+  const checkbox = document.querySelector(
+    ".checkbox-cover input"
+  );
+  if (!checkbox) return;
+  checkbox.addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
+      checkbox.click();
+    }
+  })
+
+  const singleCards = document.querySelectorAll(".single-article-img a");
+  if (singleCards) {
+    singleCards.forEach((singleCard) => {
+      singleCard.setAttribute("tabindex", "-1");
+    })
+  }
+})();
+// !SECTION
+
+function setTabindexForm() {
+  const startForm = document.querySelector("form .ui-tabs-tab.ui-corner-top");
+  if (startForm) {
+    startForm.setAttribute("tabindex", "-1");
+  }
+}
+
+setTimeout(setTabindexForm, 6000);
+
+
+
+(() => {
+  function setTabindexBreadcrumbs() {
+    const breadcrumbs = document.querySelectorAll(
+      ".bs_breadcrumb_trail a"
+    );
+    breadcrumbs.forEach((bredcrumb) => {
+      if (breadcrumbs[breadcrumbs.length - 1] == bredcrumb) {
+        bredcrumb.setAttribute("tabindex", "-1");
+        bredcrumb.style.color = "gray";
+        bredcrumb.style.pointerEvents = "none";
+      } else {
+        bredcrumb.setAttribute("tabindex", "0");
+      }
+    });
+  }
+  setTimeout(setTabindexBreadcrumbs, 1000);
+
+})();
+

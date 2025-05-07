@@ -1,0 +1,99 @@
+(() => {
+  const divBox = document.querySelector(
+    ".footer-widget-area .ast-builder-html-element"
+  );
+  if (divBox) {
+    const tag = document.createElement("a");
+    const text = document.querySelector(
+      ".footer-widget-area .ast-builder-html-element p"
+    );
+    tag.appendChild(text);
+    divBox.appendChild(tag);
+  }
+
+  const newsletterButton = document.querySelector(".site-below-footer-wrap");
+  if (newsletterButton) {
+    newsletterButton.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        initTabLoop();
+      }
+    });
+  }
+
+  const buttonClose = document.querySelector(
+    ".brave_popup__close.brave_popup__close--inside_right.brave_popup__close--icon"
+  );
+  if (buttonClose) {
+    buttonClose.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        addTabIndex();
+      }
+    });
+  }
+
+  function addTabIndex() {
+    const links = document.querySelectorAll(".hfeed.site a");
+    console.log(links);
+    links.forEach((link) => {
+      link.setAttribute("tabindex", "0");
+    });
+
+    const buttons = document.querySelectorAll(".hfeed.site button");
+    buttons.forEach((button) => {
+      button.setAttribute("tabindex", "0");
+    });
+
+    const labels = document.querySelectorAll(".hfeed.site label");
+    labels.forEach((label) => {
+      label.setAttribute("tabindex", "0");
+    });
+
+    const skiplinks = document.querySelectorAll("#bs_wcag_skip-links a");
+    skiplinks.forEach((skiplink) => {
+      skiplink.setAttribute("tabindex", "0");
+    });
+
+    const inputs = document.querySelectorAll(".hfeed.site input");
+    inputs.forEach((input) => {
+      input.setAttribute("tabindex", "0");
+    });
+
+    const divs = document.querySelectorAll('.hfeed [tabindex="0"]');
+    divs.forEach((div) => {
+      div.setAttribute("tabindex", "0");
+    });
+  }
+
+  function initTabLoop() {
+    const links = document.querySelectorAll(".hfeed.site a");
+    console.log(links);
+    links.forEach((link) => {
+      link.setAttribute("tabindex", "-1");
+    });
+
+    const buttons = document.querySelectorAll(".hfeed.site button");
+    buttons.forEach((button) => {
+      button.setAttribute("tabindex", "-1");
+    });
+
+    const labels = document.querySelectorAll(".hfeed.site label");
+    labels.forEach((label) => {
+      label.setAttribute("tabindex", "-1");
+    });
+
+    const skiplinks = document.querySelectorAll("#bs_wcag_skip-links a");
+    skiplinks.forEach((skiplink) => {
+      skiplink.setAttribute("tabindex", "-1");
+    });
+
+    const inputs = document.querySelectorAll(".hfeed.site input");
+    inputs.forEach((input) => {
+      input.setAttribute("tabindex", "-1");
+    });
+
+    const divs = document.querySelectorAll('.hfeed [tabindex="0"]');
+    divs.forEach((div) => {
+      div.setAttribute("tabindex", "-1");
+    });
+  }
+})();

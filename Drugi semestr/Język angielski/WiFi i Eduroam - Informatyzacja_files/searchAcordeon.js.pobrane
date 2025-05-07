@@ -1,0 +1,21 @@
+(() => {
+  document.addEventListener("keydown", (e) => {
+    if (e.keyCode == 70 && e.ctrlKey) {
+      const block = document.querySelector(".ugb-block-content");
+      const buttons = block.querySelectorAll(".ugb-accordion__content");
+      buttons.forEach((button) => {
+        button.classList.add("bs-search-word");
+      });
+    }
+  });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key == "Escape") {
+      const block = document.querySelector(".ugb-block-content");
+      const buttons = block.querySelectorAll(".ugb-accordion__content");
+      buttons.forEach((button) => {
+        button.classList.remove("bs-search-word");
+      });
+    }
+  });
+})();

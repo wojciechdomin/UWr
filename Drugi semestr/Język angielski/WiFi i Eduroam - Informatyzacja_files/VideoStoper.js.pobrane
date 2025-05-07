@@ -1,0 +1,70 @@
+(() => {
+  //get te button pause video
+  const button = document.querySelector(
+    ".bst-video__transparent-overlay_button.bst-video__transparent-overlay_button_stop"
+  );
+  //checking if the button exists and adding an enter-click function to it
+  if (button) {
+    button.setAttribute("role", "button");
+    button.tabIndex = "0";
+    button.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        button.click();
+      }
+    });
+  }
+  //change title when video is stopped
+
+  const buttonVideo = document.querySelector(
+    ".bst-video__transparent-overlay_button"
+  );
+
+  if (buttonVideo) {
+    buttonVideo.setAttribute("title", "zatrzymaj dekoracyjne wideo");
+    buttonVideo.addEventListener("click", (e) => {
+      if (
+        buttonVideo.classList.contains(
+          "bst-video__transparent-overlay_button_stop"
+        )
+      ) {
+        buttonVideo.setAttribute("title", "odtwórz dekoracyjne wideo");
+      } else {
+        buttonVideo.setAttribute("title", "zatrzymaj dekoracyjne wideo");
+      }
+    });
+  }
+
+  // newsletter
+  const newsletter = document.querySelector(
+    '.site-below-footer-wrap[data-section="section-below-footer-builder"]'
+  );
+  if (newsletter) {
+    newsletter.setAttribute("role", "button");
+    newsletter.setAttribute("tabindex", "0");
+    newsletter.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        newsletter.click();
+      }
+    });
+  }
+  //checking if the button exists add to him index 0
+  const search = document.querySelector(".search-field");
+  if (search) {
+    search.tabIndex = "0";
+  }
+
+  //
+  const acordeons = document.querySelectorAll(".accordion-header");
+  acordeons.forEach((acordeon) => {
+    if (acordeon) {
+      acordeon.tabIndex = "-1";
+    }
+    const img = acordeon.querySelector("img");
+    img.tabIndex = "0";
+    img.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        img.click();
+      }
+    });
+  });
+})();

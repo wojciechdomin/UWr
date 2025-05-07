@@ -1,0 +1,11 @@
+.bs-toolbox-element {
+  max-height: 0;
+  transition: max-height 0.85s ease;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.bs-toolbox-element--show {
+  max-height: 500px;
+}

@@ -1,0 +1,59 @@
+(() => {
+    const searchLetters = document.querySelectorAll("#letter-block .pracownicy-litera");
+    searchLetters.forEach((letter) => {
+        letter.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+                if (letter.previousElementSibling) {
+                    letter.previousElementSibling.focus();
+                }
+            } else if (e.key === "ArrowRight") {
+                if (letter.nextElementSibling) {
+                    letter.nextElementSibling.focus();
+                }
+            }
+        })
+    })
+    const arrowUp = document.querySelector(".strzalka_top");
+    if (arrowUp) {
+        arrowUp.classList.add("bst-arrow-up--hidden");
+        arrowUp.setAttribute("title", "Przejdź na górę listy");
+    }
+    const employees = document.querySelectorAll("p .pracownik-litera");
+    employees.forEach((employee) => {
+        employee.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") {
+                if (arrowUp) arrowUp.focus();
+            }
+        })
+    })
+    const el = document.querySelector("div #letter-Z");
+    if(!el) return;
+
+    const elDistanceToTop = window.pageYOffset + el.getBoundingClientRect().top;
+    window.addEventListener("scroll", (e) => {
+        let arrowDistanceToTop = window.pageYOffset + arrowUp.getBoundingClientRect().top;
+        const scroll = document.querySelector(".bst-scroll--unhidden");
+        let scrollNow = window.pageYOffset + scroll.getBoundingClientRect().top;
+
+        if (window.scrollY == 0) {
+            if (arrowUp) {
+                arrowUp.classList.add("bst-arrow-up--hidden");
+            }
+        } else {
+            if (arrowUp) {
+                arrowUp.classList.remove("bst-arrow-up--hidden");
+            }
+        }
+
+
+        if (arrowDistanceToTop >= elDistanceToTop && scrollNow >= elDistanceToTop) {
+            if (arrowUp) {
+                arrowUp.classList.add("bst-arrow-up--absolute");
+            }
+        } else if (elDistanceToTop >= scrollNow) {
+            if (arrowUp) {
+                arrowUp.classList.remove("bst-arrow-up--absolute");
+            }
+        }
+    })
+})();

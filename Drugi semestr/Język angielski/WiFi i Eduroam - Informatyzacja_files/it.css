@@ -1,0 +1,238 @@
+.bs_menu {
+    max-width: 100vw;
+}
+
+.site-title a {
+    word-wrap: normal;
+}
+
+#brave_popup_15533__step__0 #brave_element--MYEqVZGLCntqgygHAi1 input[type="checkbox"]:checked:before,
+#brave_popup_15533__step__0 #brave_element--MYEqVZGLCntqgygHAi1 input[type="radio"]:checked:before {
+    color: #fff !important
+}
+
+.site-footer-below-section-2 .widget_text p strong {
+    border-bottom: solid 4px #3784C5;
+    cursor: pointer;
+}
+
+.bs_mobile-nav__item--search-target p {
+    color: white;
+}
+
+.entry-content .bs-baner-text {
+    font-size: 2em;
+}
+
+@media(max-width:1600px) {
+    .entry-content .bs-baner-text {
+        font-size: 1.7em;
+    }
+}
+
+@media(max-width:1300px) {
+    .entry-content .bs-baner-text {
+        font-size: 1.5em;
+    }
+}
+
+@media(min-width:2000px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 6rem;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    #content .entry-content .element-ogloszenia-wrap-title {
+        font-size: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1.8rem;
+    }
+}
+
+@media(max-width:2000px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 5rem;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    #content .entry-content .element-ogloszenia-wrap-title {
+        font-size: 1.8rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1.5rem;
+    }
+}
+
+@media(max-width:1600px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 3.5rem;
+        margin-bottom: 10px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    #content .entry-content .element-ogloszenia-wrap-title {
+        font-size: 1.3rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1.2rem;
+    }
+}
+
+@media(max-width:1250px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content .entry-content .element-ogloszenia-wrap-title {
+        font-size: 1.2rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width:1000px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content .entry-content .element-ogloszenia-wrap-title {
+        font-size: 1.2rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width:921px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 6rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 3.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content #primary .entry-content .element-ogloszenia-wrap-title {
+        font-size: 2.5rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 2rem;
+    }
+}
+
+@media(max-width:768px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 6rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 3rem;
+        margin-bottom: 5px;
+    }
+
+    #content #primary .entry-content .element-ogloszenia-wrap-title {
+        font-size: 2.5rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 2rem;
+    }
+}
+
+@media(max-width:600px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 5rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 3rem;
+        margin-bottom: 5px;
+    }
+
+    #content #primary .entry-content .element-ogloszenia-wrap-title {
+        font-size: 2rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1.5rem;
+    }
+}
+
+@media(max-width:450px) {
+    #content .element-ogloszenia-wrap-dzien {
+        font-size: 4rem;
+        margin-bottom: 5px;
+    }
+
+    #content .element-ogloszenia-wrap-data {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+
+    #content #primary .entry-content .element-ogloszenia-wrap-title {
+        font-size: 1.5rem;
+    }
+
+    #content .element-ogloszenia-wrap-content {
+        font-size: 1.2rem;
+    }
+}
+
+/*DUI*/
+.bs-baner-second-column .bs-baner-text {
+    color: #fff;
+}
+
+.bs_menu__section .bs_menu__imagebox .bs_menu__description {
+    color: #fff;
+}
+
+.element-ogloszenia-wrap:hover>* {
+    color: #fff;
+}

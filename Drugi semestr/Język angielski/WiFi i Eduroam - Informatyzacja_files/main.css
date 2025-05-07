@@ -1,0 +1,237 @@
+/*Nowa stopka*/
+.site-footer-primary-section-2.site-footer-section section nav ul li a {
+    color: white;
+}
+
+.site-footer-primary-section-3 .footer-widget-area.widget-area.site-footer-focus-item.footer-widget-area-inner>.widget_nav_menu {
+    margin-bottom: 0vw;
+    margin-top: -1.8vw;
+}
+
+.site-primary-footer-wrap[data-section="section-primary-footer-builder"] .site-footer-primary-section-2.site-footer-section {
+    padding-left: 6vw;
+}
+
+.site-primary-footer-wrap {
+    padding-top: 60px;
+}
+
+#menu-footer-left,
+#menu-footer-right,
+#menu-footer-left-2,
+#menu-footer-left-1,
+#menu-footer-right-2,
+[data-section="sidebar-widgets-footer-widget-2"] {
+    line-height: 2.5em;
+}
+
+#mks_social_widget-3,
+footer .mks_social_widget {
+    line-height: 2.5vw;
+}
+
+footer ul.mks_social_widget_ul li a {
+    width: 1.5vw !important;
+    height: 1.5vw !important;
+}
+
+.site-footer-primary-section-3 .widget.widget_media_image img {
+    height: 1.8vw !important;
+}
+
+.site-footer-primary-section-3 .widget.widget_media_image figure {
+    margin-top: .5vw;
+}
+
+.site-primary-footer-wrap[data-section="section-primary-footer-builder"] .ast-builder-grid-row,
+.site-primary-footer-wrap[data-section="section-primary-footer-builder"] .site-footer-section {
+    align-items: baseline !important;
+}
+
+@media(max-width:1200px) {
+    .site-primary-footer-wrap[data-section="section-primary-footer-builder"] .site-footer-primary-section-2.site-footer-section {
+        padding-left: 5vw;
+    }
+}
+
+@media (max-width: 921px) {
+    .home .site-footer-primary-section-2.site-footer-section.site-footer-section-2 {
+        margin-bottom: 0 !important;
+    }
+
+    .home #menu-footer-left,
+    .home #menu-footer-right,
+    .home #menu-footer-left-2,
+    .home #menu-footer-left-1 {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .site-primary-footer-wrap[data-section="section-primary-footer-builder"] .site-footer-primary-section-2.site-footer-section {
+        padding-left: 0vw;
+    }
+}
+
+@media(max-width:600px) {
+    .site-primary-footer-wrap[data-section="section-primary-footer-builder"] .ast-builder-grid-row {
+        padding-top: 25px;
+    }
+
+    .home .site-primary-footer-wrap {
+        padding-top: 25px !important;
+    }
+}
+
+.bs-baner-second-column .bs-baner-text {
+    color: #fff;
+}
+
+.bs_menu__section .bs_menu__imagebox .bs_menu__description {
+    color: #fff;
+}
+
+.element-ogloszenia-wrap:hover>* {
+    color: #fff;
+}
+
+.container.gridPosts {
+    margin-left: 6.5%;
+    margin-right: 6.5%;
+    margin-top: 5%;
+    width: 87%;
+}
+
+.footer-widget-area[data-section="sidebar-widgets-footer-widget-2"].footer-widget-area-inner a {
+    border-bottom: solid 3px transparent;
+}
+
+.footer-widget-area[data-section="sidebar-widgets-footer-widget-2"].footer-widget-area-inner a:hover {
+    border-bottom: solid 3px white;
+    transition: 0.1s;
+}
+
+.footer-widget-area[data-section="sidebar-widgets-footer-widget-3"].footer-widget-area-inner a {
+    border-bottom: solid 3px transparent;
+}
+
+.footer-widget-area[data-section="sidebar-widgets-footer-widget-3"].footer-widget-area-inner a:hover {
+    border-bottom: solid 3px white;
+    transition: 0.1s;
+}
+
+/*wydarzenia*/
+
+.element-wydarzenia-wrap-data {
+    margin-bottom: 0.6vw !important;
+}
+
+.element-wydarzenia-wrap-title {
+    margin-bottom: 0.5vw !important;
+}
+
+.ast-above-header.ast-above-header-bar,
+.ast-primary-header-bar.ast-primary-header.main-header-bar.site-header-focus-item {
+    border: none !important;
+}
+
+.bs__file-list,
+.bs__file-list li {
+    margin-left: 0 !important;
+}
+
+.bs-contact-right-column .bs__file-list__list li {
+    margin-left: 0% !important;
+}
+
+.bs-contact-right-column ul.bs__links__list li {
+    margin-left: 0 !important;
+}
+
+/*na_sztywno*/
+
+.bs-baner-second-column .bs-baner-text {
+    background: var(--wydzialowy-ciemny);
+    height: 45%;
+}
+
+.bs-baner-post {
+    margin-top: 20px;
+}
+
+.bs-baner-badawcza {
+    margin-top: 4.5vw;
+}
+
+.site-logo-img {
+    background: white;
+    margin-top: -15px;
+    margin-bottom: -15px;
+}
+
+.bs-border-na-sztywno {
+    height: 4px;
+    margin-bottom: 0 !important;
+    margin-left: 6%;
+    margin-right: 6%;
+
+}
+
+.bs_sticky__menu-item--no-section {
+    text-transform: none;
+}
+
+.news-three {
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 100px;
+    margin-bottom: 100px
+}
+
+.row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-image {
+    height: 360px;
+}
+
+.bs__shortcuts__nav {
+    background-color: var(--wydzialowy-ciemny);
+}
+
+.bs__shortcuts__nav-item {
+    border: solid 3px #ffffff00;
+}
+
+.bs__units__list li:hover a {
+    border-bottom: solid 4px var(--wydzialowy-ciemny);
+}
+
+.wydarzenia-block {
+    border-top: none;
+    padding: 2% 6.5% 4%;
+}
+
+.bs-section-two-columns {
+    margin-bottom: 60px;
+}
+
+.bs-section-with-book {
+    margin-bottom: 0;
+}
+
+#aquilaAdminbarIcon {
+    background-size: 22px;
+}
+
+/* Problem ze slajderem */
+.wp-block-column.bs-baner-first-column > .n2_clear > ss3-force-full-width > div > .n2_clear{
+	display:none;
+}  
+
+/*Poprawki wyśrodkowanie*/
+
+.wp-block-image.aligncenter.size-full{
+	margin-left:auto;
+	margin-right:auto;
+}
+.blok_nowa_podstrona >.ugb-inner-block >.ugb-block-content >.ugb-container__wrapper >.ugb-container__side >.ugb-container__content-wrapper > .wp-block-image.aligncenter {
+    margin-left: auto!important;
+    margin-right: auto!important;
+}

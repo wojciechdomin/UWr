@@ -1,0 +1,161 @@
+/* Page */
+.bs_block__container {
+  /*width: 50%;*/
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bs_block__container a.button2__link {
+  text-decoration: none;
+}
+
+.button2 {
+  width: 360px;
+  text-align: center;
+  border: black 1px solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border: 4rem;
+  background: transparent;
+  background: -webkit-gradient(
+      linear,
+      right top,
+      left top,
+      color-stop(50%, transparent),
+      color-stop(50%, black)
+    )
+    right;
+  background: -o-linear-gradient(right, transparent 50%, black 50%) right;
+  background: linear-gradient(to left, transparent 50%, black 50%) right;
+  background-size: 200%;
+  -webkit-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+  border-radius: 5rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.c-button__arrow2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transition-delay: 0.1s;
+  -o-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+  background-color: black;
+  border-radius: 50%;
+  height: 77px;
+  width: 77px;
+  padding: 6px;
+  position: relative;
+}
+
+.c-button__inner2 {
+  color: black;
+  font-family: 'Raleway', sans-serif;
+  margin: 0 px;
+  padding-right: 25px;
+  font-size: 40px;
+  padding-left: 0px;
+  text-decoration: none;
+}
+.c-arrow2 {
+  -webkit-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+  /* transform: scale(1.2); */
+}
+
+.button2:hover .c-arrow2 {
+  width: 40px;
+  /* transform: scale(1.2); */
+}
+
+.c-arrow2 rect {
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+  fill: white;
+  opacity: 0;
+  -webkit-transform: translateX(-25%);
+  -ms-transform: translateX(-25%);
+  transform: translateX(-25%);
+}
+.c-arrow2 polygon {
+  fill: white;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transform-origin: 100% 0;
+  -ms-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transition-delay: 0s;
+  -o-transition-delay: 0s;
+  transition-delay: 0s;
+  -webkit-transform: rotate(180%);
+  -ms-transform: rotate(180%);
+  transform: rotate(180%);
+  z-index: 1;
+  -webkit-transform: translateX(-25%);
+  -ms-transform: translateX(-25%);
+  transform: translateX(-25%);
+}
+
+.button2:hover .c-arrow2 rect {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform: translateX(15%);
+  -ms-transform: translateX(15%);
+  transform: translateX(15%);
+  opacity: 1;
+}
+
+.button2:hover .c-arrow2 polygon {
+  -webkit-transform: translateX(5%);
+  -ms-transform: translateX(5%);
+  transform: translateX(5%);
+}
+
+.button2:hover {
+  background-position: left;
+}
+
+.button2:hover .c-button__inner2 {
+  color: white;
+}
+.bs_block__container:focus-within {
+  outline: var(--focus-outline) !important;
+  outline-offset: 4px;
+}

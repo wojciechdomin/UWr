@@ -1,0 +1,217 @@
+.bs_gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bs_gallery__images-container {
+  display: flex;
+  width: 90%;
+}
+
+.bs_gallery__column {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: fit-content;
+  height: -moz-fit-content;
+  padding: 0;
+  margin: 0;
+}
+
+.bs_gallery__image-element {
+  padding: 5px;
+  width: 100%;
+}
+
+.bs_gallery__img {
+  width: 100%;
+  border: 2px solid transparent;
+}
+
+.bs_gallery__img:hover {
+  border: 2px solid orangered;
+  cursor: pointer;
+}
+
+.bs_gallery__img:focus {
+  outline: 2px solid orangered;
+  outline-offset: 2px;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  .bs_gallery__images-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Lightbox */
+.bs_gallery__lightbox-bgc {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(19, 19, 19, 0.94);
+  z-index: 999;
+}
+
+.bs_gallery__lightbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.bs_gallery__lightbox-topbar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2px 50px;
+}
+
+.bs_gallery__lightbox-topbar__item {
+  font-size: 3.2em;
+  color: white;
+  padding: 0 15px;
+}
+
+.bs_gallery__lightbox-topbar__item:hover {
+  font-size: 3.2em;
+  color: orangered;
+  cursor: pointer;
+}
+
+.bs_gallery__lightbox-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+}
+
+.bs_gallery__lightbox-main__button {
+  font-size: 5rem;
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+
+.bs_gallery__lightbox-main__button[bs-is-disabled='true'] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.bs_gallery__lightbox-main__button:hover {
+  color: orangered;
+  cursor: pointer;
+}
+
+.bs_gallery__lightbox--content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 95%;
+}
+
+.bs_gallery__lightbox-main__images-slider {
+  display: flex;
+  flex-direction: row;
+  max-width: 90vw;
+  height: 95%;
+  overflow: hidden;
+}
+
+.bs_gallery__lightbox-main__images-slider__item {
+  width: 90vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  transition: 1s ease-in-out;
+}
+
+.bs_gallery__lightbox-main__images-slider__item-image-container {
+  max-width: 95%;
+  max-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.bs_gallery__lightbox-main__images-slider__item-image {
+  object-fit: cover;
+  height: 100%;
+}
+
+.bs_gallery__lightbox-main__images-slider__item__caption {
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.bs_gallery__lightbox-main__minimap {
+  max-width: 50vw;
+  height: 10%;
+  overflow: hidden;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+/* width */
+.bs_gallery__lightbox-main__minimap::-webkit-scrollbar {
+  height: 5px;
+}
+
+/* Track */
+.bs_gallery__lightbox-main__minimap::-webkit-scrollbar-track {
+  border: solid 3px transparent;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+
+/* Handle */
+.bs_gallery__lightbox-main__minimap::-webkit-scrollbar-thumb {
+  border: solid 3px transparent;
+  background: orangered;
+  border-radius: 5px;
+}
+
+.bs_gallery__lightbox-main__minimap-image {
+  max-height: 100%;
+  width: auto;
+  border: solid 3px transparent;
+}
+
+.bs_gallery__lightbox-main__minimap-image:hover {
+  border: solid 3px orangered;
+  cursor: pointer;
+}
+
+.bs_gallery__lightbox-main__minimap-image[data-bs-lightbox-is-active='true'] {
+  border: solid 3px orangered;
+}
+
+/* UTILS*/
+
+[data-show-lightbox='false'] {
+  display: none;
+}

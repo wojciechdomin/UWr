@@ -1,0 +1,83 @@
+@keyframes mymove {
+    0% {background-position: center 10%;}
+    100% {background-position: center center;}
+}
+
+.row-news-two-columns {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 2%
+}
+.row-news-two-columns .first-block .col-first-wrap-container-image {
+    width: 13vw;
+    height: 13vw;
+    margin: 0 0 auto auto;
+    border-radius: 0 10px 10px 10px;
+    overflow: hidden;
+}
+.row-news-two-columns .first-block .col-first-wrap-container-image img{
+    width: 13vw;
+    height: 13vw;
+    border-radius: 0 10px 10px 10px;
+    object-fit: cover;
+    transition-duration: 1s;
+}
+.row-news-two-columns .first-block .col-first-wrap-container-image img:hover, .row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-image img:hover{
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+}
+.row-news-two-columns .first-block .col-first-wrap-container a{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-bottom: 20px;
+}
+.row-news-two-columns .first-block .col-first-wrap-container a h3{
+    font-weight: 600;
+    font-size: 1.7vw;
+}
+.row-news-two-columns .col-two .col-two-wrap-container a h3{
+    font-weight: 600;
+    font-size: 1.7vw;
+}
+.row-news-two-columns a{
+    color: #000;
+    display: block;
+}
+.row-news-two-columns .first-block .col-first-wrap-container a .col-first-wrap-container-content-description, .row-news-two-columns .col-two .col-two-wrap-container a .col-two-wrap-container-content-description{
+    font-size: 1.2vw;
+    line-height: 1.2;
+}
+.row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-content{
+    margin-top: 20px;
+}
+.row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-image .obrazek{
+    width: 95%;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    border-radius: 10px 10px 0 10px;
+}
+.row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-image{
+    background-color: #054B78;
+    margin-top: -20px;
+    border-radius: 10px 10px 0 10px;
+    overflow: hidden;
+}
+.row-news-two-columns .col-two .col-two-wrap-container .col-two-wrap-container-image img{
+    object-fit: cover;
+    border-radius: 10px 10px 0 10px;
+    transition-duration: 1s;
+}
+
+@media (max-width: 768px) {
+    .elelemt-aktualnosci {
+        width:100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    div.example {
+        display: none;
+    }
+}

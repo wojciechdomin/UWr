@@ -1,0 +1,33 @@
+/* Page */
+.bs_block__container {
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.entry-content > .lista-categorii{
+  margin-left: 6.5%;
+  margin-right: 6.5%;
+}
+.lista-categorii-kategorie{
+  color:black;
+}
+.site-content .entry-content .lista-categorii-tytul{
+  font-weight: bold;
+  font-size:1.8vw;
+  margin-bottom: 1.6vw;
+}
+@media (max-width:1000px){
+  .site-content .entry-content .lista-categorii-tytul{
+    font-size:3vw;
+  }  
+}
+@media (max-width:768px){
+  .site-content .entry-content .lista-categorii-tytul{
+    font-size:4.5vw;
+  }  
+}
+@media (max-width:600px){
+  .site-content .entry-content .lista-categorii-tytul{
+    font-size:5.5vw;
+  }  
+}

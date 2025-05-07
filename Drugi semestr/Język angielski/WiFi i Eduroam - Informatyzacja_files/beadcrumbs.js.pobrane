@@ -1,0 +1,90 @@
+function createTrailItem(item) {
+  if (item.classList.contains("trail-end")) return;
+
+  const trailItem = document.createElement("a");
+  trailItem.href = item.querySelector("a").href;
+
+  if (item.innerText === "Home") {
+    if (document.documentElement.lang === "pl-PL") {
+      trailItem.innerText = "Strona Główna";
+    } else {
+      trailItem.innerText = "Home Page";
+    }
+  } else {
+    if (item.innerText.length > 50) {
+      trailItem.innerText = `${item.innerText.substring(0, 47)}...`;
+    } else {
+      trailItem.innerText = item.innerText;
+    }
+  }
+  trailItem.classList.add("bs_breadcrumb_trail_item");
+
+  return trailItem;
+}
+
+function getBreadcrumbs() {
+  const wrapper = document.querySelector(".ast-breadcrumbs-wrapper");
+  wrapper.style.display = "none";
+  wrapper.style.padding = 0;
+  wrapper.style.margin = 0;
+  const box = document.querySelector(".main-header-bar.ast-header-breadcrumb");
+  box.style.display = "none";
+  const newTrail = document.createElement("span");
+  newTrail.classList.add("bs_breadcrumb_trail");
+
+  const trailYoast = wrapper.querySelector("#ast-breadcrumbs-yoast");
+  if (trailYoast) {
+    const hrefs = trailYoast.querySelectorAll("a");
+    const numberHrefs = hrefs.length - 1;
+    let number = 0;
+
+    hrefs.forEach((item) => {
+      if (item.href) {
+        const createA = document.createElement("a");
+        const href = item.href;
+        const text = item.innerText;
+        createA.href = href;
+        createA.innerText = text;
+        createA.classList.add("bs_breadcrumb_trail_item");
+        if (number < numberHrefs) {
+          const newSeparator = document.createElement("span");
+          newSeparator.innerText = " / ";
+          createA.appendChild(newSeparator);
+        }
+        newTrail.appendChild(createA);
+        number++;
+      }
+    });
+  } else {
+    const trail = wrapper.querySelectorAll(".trail-item");
+    trail.forEach((item) => {
+      const newItem = createTrailItem(item);
+      if (!newItem) return;
+      if (
+        !item.classList.contains("trail-begin") &&
+        !item.classList.contains("trail-end")
+      ) {
+        const newSeparator = document.createElement("span");
+        newSeparator.innerText = "/";
+        newTrail.appendChild(newSeparator);
+      }
+      newTrail.appendChild(newItem);
+    });
+  }
+  return newTrail;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  function initBreadcrubms() {
+    const targetForBreadcrumbs = document.querySelector(
+      ".bs_add_breadcrumb_trail"
+    );
+    if (targetForBreadcrumbs) {
+      const newTrail = getBreadcrumbs();
+      targetForBreadcrumbs.innerHTML = "";
+      targetForBreadcrumbs.appendChild(newTrail);
+    }
+  }
+
+  initBreadcrubms();
+});

@@ -1,0 +1,65 @@
+const $ = jQuery.noConflict();
+
+function animatedBanner() {
+  if (document.querySelector(".bs-baner")) {
+    const trigger_elements = $(".bs-baner");
+    const animation_elements = $(".bs-baner__text");
+    const win = $(window);
+    win.on("scroll", check_if_in_view);
+    win.on("scroll resize", check_if_in_view);
+    win.trigger("scroll");
+
+    function check_if_in_view() {
+      const window_height = win.height();
+      const window_top_position = win.scrollTop();
+      const window_bottom_position = window_top_position + window_height;
+
+      const element_height = trigger_elements.outerHeight();
+      const element_top_position = trigger_elements.offset().top;
+      const element_bottom_position = element_top_position + element_height;
+
+      if (
+        element_bottom_position >= window_top_position &&
+        element_top_position <= window_bottom_position
+      ) {
+        $.each(animation_elements, function () {
+          const element = $(this);
+          const st = $(document).scrollTop();
+          if (element.hasClass("bs-baner__text--left")) {
+            let x_translation;
+            if (win.width() < 600) {
+            } else if (win.width() < 800) {
+              x_translation = -900 + (st / 1) * 0.2;
+            } else if (win.width() < 1000) {
+              x_translation = -1100 + (st / 1) * 0.2;
+            } else if (win.width() < 1900) {
+              x_translation = -950 + (st / 1) * 0.2;
+            } else {
+              x_translation = -1840 + (st / 1) * 0.3;
+            }
+
+            element.css({ transform: `translate(${x_translation}px,0)` });
+          }
+
+          if (element.hasClass("bs-baner__text--right")) {
+            let x_translation;
+            if (win.width() < 600) {
+            } else {
+              if (win.width() < 800) {
+                x_translation = -900 + (st / 1) * 0.2;
+              } else if (win.width() < 1000) {
+                x_translation = -1100 + (st / 1) * 0.2;
+              } else if (win.width() < 1900) {
+                x_translation = -950 + (st / 1) * 0.2;
+              } else {
+                x_translation = -1840 + (st / 1) * 0.3;
+              }
+            }
+            element.css({ transform: `translate(${-x_translation}px,0)` });
+          }
+        });
+      }
+    }
+  }
+}
+animatedBanner();

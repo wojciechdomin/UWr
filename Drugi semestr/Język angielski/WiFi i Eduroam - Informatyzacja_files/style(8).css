@@ -1,0 +1,114 @@
+.social-block {
+    border-top: 4px solid #FCBD30;
+    background: white;
+    margin: 4% 4%;
+    margin-top:50px;
+}
+
+.element-social, .element-social-more {
+    width:100%;
+	float:left;
+}
+
+.element-social .content {
+	width: 50%;
+    float: left;
+    padding-left:3em;
+}
+
+.element-social-wrap, .element-social-wrap-more {
+	border-radius: 0 10px 10px 10px!important;
+	width: 23vw;
+	padding:45px 35px;
+	margin:auto;
+	height:22vw;
+}
+
+.social-box-background {
+	height: 15vw;
+	width:50%;
+	float:left;
+    background-size: cover;
+    background-position: 50%;
+    z-index: 1;
+    border-radius: 0;
+    position: relative;
+}
+
+.social-block .row {
+	display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 4em 2%;
+    padding-top: 4em;
+}
+
+.element-social-more .element-social-wrap-more {
+	padding-top: 200px!important;
+}
+
+.element-social .bg-element {
+	background-color:#F1F1F1;
+}
+
+.element-social-wrap {
+	border: solid 5px transparent;
+}
+
+.element-social-wrap-title {
+	color: #000000 !important;
+    font-family: "Roboto", Sans-serif;
+    font-size: 1.1vw !important;
+    font-weight: 600 !important;
+}
+
+.element-social-wrap-title:before {
+	content: "";
+	display: table;
+	width: 15px;
+	border-top: 3px solid #FCBD30;
+}
+
+.element-social-wrap-content {
+	color: #000000 !important;
+    font-family: "Raleway", Sans-serif;
+    font-size: 1vw !important;
+    font-weight: 500 !important;
+    line-height: 1.66em !important;
+	margin-left:3%!important;
+}
+
+.clear{
+	clear:both
+}
+
+@media (max-width: 768px) {
+	.element-social {
+	    width:100%;
+		display: block;
+		float:none;
+		margin-top:50px;
+	}
+
+	.social-block .row{
+		grid-template-columns: 100%;
+		grid-gap:0;
+		padding-top: 0;
+		padding-bottom: 50px;
+	}
+
+	.social-box-background{
+		height: 30vw;
+   		width: 50%;
+    	float: left;
+    	border-radius: 0;
+	}
+
+	.element-social-wrap-content {
+		font-size: 2.5vw !important;
+	}
+
+	.element-social-wrap-title {
+		font-size: 2.8vw !important;
+	}
+}
+

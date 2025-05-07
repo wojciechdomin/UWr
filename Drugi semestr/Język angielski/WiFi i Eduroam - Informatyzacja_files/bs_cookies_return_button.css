@@ -1,0 +1,24 @@
+.bs-cookies__return-button {
+  position: fixed;
+  left: 0;
+  bottom: 50px;
+  border-radius: 0 23px 23px 0;
+  border: 2px solid var(--glowny-kolor-ciemny);
+  background-color: white;
+  z-index: 999999999999999;
+  padding: 5px 15px;
+}
+
+.bs-cookies__return-button:hover {
+  color: white;
+  background-color: var(--glowny-kolor-ciemny);
+}
+
+.bs-cookies__return-button--hidden {
+  display: none;
+}
+
+.bs-cookies__return-button-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+}

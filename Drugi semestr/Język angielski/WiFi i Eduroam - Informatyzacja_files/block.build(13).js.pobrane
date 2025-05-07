@@ -1,0 +1,250 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+var el = wp.element.createElement;
+
+wp.blocks.registerBlockType("bonasoft-modular/bona-custom-posts", {
+  title: "Block Custom Posts",
+  icon: "format-gallery",
+  category: "common",
+  attributes: {
+    title: {
+      type: "string"
+    },
+    css_class: {
+      type: "string"
+    },
+    category: {
+      type: "string"
+    },
+    taxonomy: {
+      type: "string"
+    },
+    posttype: {
+      type: "string"
+    },
+    view: {
+      type: "string"
+    },
+    number: {
+      type: "string"
+    },
+    url: {
+      type: "string"
+    },
+    tag: {
+      type: "string"
+    }
+  },
+  example: {
+    attributes: {
+      backgroundColor: "#000000",
+      opacity: 0.8,
+      padding: 30,
+      textColor: "#FFFFFF",
+      radius: 10
+    }
+  },
+  edit(props) {
+    var title = props.attributes.title;
+    var css_class = props.attributes.css_class;
+    var category = props.attributes.category;
+    var taxonomy = props.attributes.taxonomy;
+    var posttype = props.attributes.posttype;
+    var view = props.attributes.view;
+    var number = props.attributes.number;
+    var url = props.attributes.url;
+    var tag = props.attributes.tag;
+    const postTypes = postsData["postTypes"];
+
+    var postCat = wp.data.select("core").getEntityRecords("taxonomy", "aktualnosc_new", { per_page: -1 });
+
+    function onChangeTitle(content) {
+      props.setAttributes({ title: event.target.value });
+    }
+
+    function onChangeCssClass(content) {
+      props.setAttributes({ css_class: event.target.value });
+    }
+
+    function onChangeCategory(content) {
+      props.setAttributes({ category: event.target.value });
+    }
+
+    function onChangeTaxonomy(content) {
+      props.setAttributes({ taxonomy: event.target.value });
+    }
+
+    function onChangePosttype(content) {
+      props.setAttributes({ posttype: event.target.value });
+    }
+
+    function onChangeView(content) {
+      props.setAttributes({ view: event.target.value });
+    }
+
+    function onChangeNumber(content) {
+      props.setAttributes({ number: event.target.value });
+    }
+
+    function onChangeUrl(content) {
+      props.setAttributes({ url: event.target.value });
+    }
+      
+    function onChangeTag(content) {
+      props.setAttributes({ tag: event.target.value });
+    }
+
+    function updateType(event) {
+      props.setAttributes({ type: event.target.value });
+    }
+    function printElt(element, index, array) {
+      el("option", {
+        value: element
+      }, element);
+    }
+
+    const newLocal = "test";
+    return el("div", {
+      className: "bona-custom-posts"
+    }, el("h3", {
+      className: "bona-custom-posts-h"
+    }, "Moduł Wyświetlający posty dowolnego typu"), el("span", {}, "Tytuł Bloku: "), el("input", {
+      type: "text",
+      placeholder: "Enter title here...",
+      value: title,
+      onChange: onChangeTitle,
+      style: { width: "100%" }
+    }), el("span", {}, "Klasa Css: "), el("input", {
+      type: "text",
+      placeholder: "Enter title here...",
+      value: css_class,
+      onChange: onChangeCssClass,
+      style: { width: "100%" }
+    }), el("span", {}, "Kategoria: "), el("input", {
+      type: "text",
+      placeholder: "Enter title here...",
+      value: category,
+      onChange: onChangeCategory,
+      style: { width: "100%" }
+    }), el("span", {}, "Taxonomy: "), el("input", {
+      type: "text",
+      placeholder: "Enter taxonomy here...",
+      value: taxonomy,
+      onChange: onChangeTaxonomy,
+      style: { width: "100%" }
+    }), el("span", {}, "Typ postu: "), el("input", {
+      type: "text",
+      placeholder: "Enter post type here...",
+      value: posttype,
+      onChange: onChangePosttype,
+      style: { width: "100%" }
+    }), el("span", {}, "Typ wyświetlanego wyglądu: "), el("select", {
+      value: view,
+      onChange: onChangeView,
+      style: { width: "100%", display: "block" }
+    }, el("option", {
+      value: ""
+    }, "-- Wybierz typ widoku --"), el("option", {
+      value: "tekst"
+    }, "tekst"), el("option", {
+      value: "allPhoto"
+    }, "same zdjęcia"), el("option", {
+      value: "zdjecia"
+    }, "zdjęcia"), el("option", {
+      value: "aktualnosci"
+    }, "aktualności"),el("option", {
+      value: "tekstzdata"
+    }, "tekst z datą")), el("span", {}, "Ilość wyświetlanych wpisów: "), el("input", {
+      type: "text",
+      placeholder: "Enter number here...",
+      value: number,
+      onChange: onChangeNumber,
+      style: { width: "100%" }
+    }), el("span", {}, "Link do postrony: "), el("input", {
+      type: "text",
+      placeholder: "Enter url here...",
+      value: url,
+      onChange: onChangeUrl,
+      style: { width: "100%" }
+    }), el("span", {}, "Tag: "), el("input", {
+      type: "text",
+      placeholder: "Enter tag here...",
+      value: tag,
+      onChange: onChangeTag,
+      style: { width: "100%" }
+    }));
+  },
+  save(props) {
+    return null;
+  }
+});
+
+/***/ })
+/******/ ]);
