@@ -1,0 +1,138 @@
+Require Import List.
+Import ListNotations.
+
+Print map.
+
+Lemma zad1 : forall {A B C : Type} (xs : list A)  (f : B -> C) 
+(g : A -> B), 
+(map f (map g xs)) = (map (fun x => f(g x) ) xs).
+Proof.
+intros A B C.
+induction xs.
++ trivial.
++ simpl. intros f g. rewrite IHxs. trivial.
+Qed.
+
+Print app.
+
+Locate "++".
+
+Lemma append_nil_r {A : Type} (xs : list A) :
+  xs ++ nil = xs.
+Proof.
+  induction xs.
+  + reflexivity.
+  + simpl.
+    rewrite IHxs.
+    reflexivity.
+Qed.
+
+Lemma append_nil_l {A : Type} (xs : list A) :
+  nil  ++ xs = xs.
+Proof.
+trivial.
+Qed.
+
+Lemma append_assoc {A : Type}
+  (xs ys zs : list A) : (xs ++ ys) ++ zs = xs ++ (ys ++ zs).
+Proof.
+  induction xs; simpl; [ trivial | ].
+  rewrite IHxs.
+  reflexivity.
+Qed.
+
+Lemma zad2help : 
+forall {A : Type} (xs : list A) (ys : list A),
+rev (xs ++ ys) = (rev ys) ++ (rev xs).
+Proof.
+intro A.
+induction xs.
++ 
+   simpl. intro ys. rewrite append_nil_r.
+   reflexivity.
++ intro ys.
+  simpl.  rewrite IHxs. simpl. 
+  rewrite append_assoc. reflexivity.
+  Qed.
+
+Lemma zad2 : forall {A : Type} (xs : list A),
+rev (rev xs) = xs.
+Proof.
+intro A.
+induction xs.
++ trivial.
++ simpl. rewrite zad2help. simpl. 
+rewrite IHxs. reflexivity.
+Qed.
+
+Print rev_append .
+
+Lemma zad3help : forall {A : Type} (xs : list A)
+(ys : list A),
+rev_append xs ys = (rev_append xs []) ++ ys.
+Proof.
+intro A.
+induction xs.
++ intro ys. trivial.
++ intro ys. simpl. rewrite IHxs. 
+set (lhs := (rev_append xs [] ++ a :: ys)).
+rewrite IHxs. 
+unfold lhs. rewrite append_assoc.
+simpl. reflexivity.
+Qed.
+
+
+
+
+Lemma zad3help2 :
+forall {A : Type} (xs : list A),
+rev' xs = rev_append xs [].
+Proof.
+trivial.
+Qed.
+
+
+Lemma zad3help3 : 
+forall {A : Type} (xs : list A) (a : A),
+rev_append (xs ++ [a]) [] =
+[a] ++ rev_append (xs) [].
+Proof.
+intro A.
+induction xs.
++ intro a. auto.
++ intro a0. simpl. rewrite zad3help.
+rewrite IHxs. rewrite append_assoc.
+set (lhs := [a0] ++ rev_append xs [] ++ [a]).
+rewrite zad3help.
+unfold lhs.
+trivial.
+Qed.
+
+Lemma zad3 : forall {A : Type} (xs : list A),
+rev' (rev' xs) = xs.
+Proof.
+intro A.
+induction xs.
++ trivial.
++ 
+rewrite zad3help2.
+rewrite zad3help2. simpl.
+replace (rev_append xs [a]) with
+(rev_append xs [] ++ [a]).
+simpl.
+rewrite zad3help3. simpl.
+replace ( rev_append (rev_append xs []) [] )
+with (rev'(rev'(xs))).
+rewrite IHxs.
+trivial.
+rewrite zad3help2. rewrite zad3help2.
+trivial.
+set (lhs := (rev_append xs [] ++ [a])).
+rewrite zad3help. 
+unfold lhs.
+trivial.
+Qed.
+
+
+
+
