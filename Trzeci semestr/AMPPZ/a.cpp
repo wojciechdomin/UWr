@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define int unsigned long long
+#define int long long
 #define mp make_pair
 #define pb push_back
 #define pii pair<int,int>
@@ -32,94 +32,90 @@ ostream& operator<<(ostream& os, vector<H> V){
 	os<<"}";
 	return os;
 }
- 
 
- int modd(int x){
-	return x & ((unsigned long long)(1ll<<32)-1ll);
+#define se second
+#define fi first
+
+const int MAX_Q = 20000;
+
+
+//funckje do rotowania wektora kierunku
+pair<int,int> rotateR(pair<int,int> p){
+	return {-p.se, p.fi};
 }
 
-int modd(int x,int n){
-	return x & ((unsigned long long)(1ll<<n)-1ll);
+pair<int,int> rotateL(pair<int,int> p){
+	return {p.se, -p.fi};
+}
+
+string Q;
+int tura = 0;
+int v = 1;
+pair<int,int> c = {0,0}; //aktualna pozycja
+pair<int,int> d = {1,0}; //kierunek
+vector<int> old_dist;
+
+int move(){
+	char instr = Q[tura];
+	tura++;
+	if(instr == 'R'){
+		d = rotateR(d);
+	}
+	if(instr == 'L'){
+		d = rotateL(d);
+	}
+//	cout<<"? "<<instr<<endl;
+	int dist;
+//	cin>>dist;
+	if(dist == 0) exit(0);
+	c.fi+=d.fi*v;
+	c.se+=d.se*v;
+	v++;
+	old_dist.push_back(dist);
+	return dist;
+}
+
+int move_seq(string &s){
+	Q+=s;
+	int dist;
+	while(tura < Q.size()){
+		dist = move();
+	//	debug(c);
+	}
+	return dist;
 }
 
 void solve()
 {
-	int a;
-	cin>>a;
-	vector<pair<int,int> > v[2];
-	int t = 0;
-	//v[0].pb({0,1});
-	//v[0].pb({1,a});
-	int u = 1;
-	for(int i = 0; i < 2048; i++){
-		v[0].pb({i,u});
-		u = modd(u*a);
+	Q = "";
+
+	int minx,maxx;
+	bool okx = false;
+
+	
+	
+	string gora1 = "FRRFRRLLLLFLLL";
+
+	int d1 = move_seq(gora1);
+	debug(c);
+	int d2 = move_seq(gora1);
+	debug(c);
+	int d3 = move_seq(gora1);
+	debug(c);
+	int d4 = move_seq(gora1);
+	debug(c);
+	// debug(old_dist);
+	if(d1 < d2){
+
 	}
-	int c = a;
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	c = modd(c*c);
-	for(int w = 11; w <= 31; w++){
-		// debug(w);
-		// debug(v[t]);
-		// debug(v[t^1]);
-		c = modd(c*c);
-		for(auto x : v[t]){
-		//	debug(x);
-		//	debug(modd(x.se,w));
-		//	debug( modd(a^(x.fi),w));
-			if(modd(x.se,w) == modd(a^(x.fi),w+1)){
-				v[t^1].pb({x.fi, modd(x.se)});
-				// debug("ok");
-			}
-			if(modd(x.se*c,w+1) == modd(a^(x.fi+(1ll<<w)),w+1)){
-				v[t^1].pb({x.fi+(1ll<<w), modd(x.se*c)});
-			}
-			
-		}
-		
-		v[t].clear();
-			t^=1;
+	if(d2 < d3){
+
 	}
 
-			u = 1;
-			for(int i = 0; i < 2048; i++){
-				if(modd(i^a) == u){
-					v[t].pb({i,u});
-				}
-				u = modd(u*a);
+	
 
-			}
-			int aa = a;
-			int cnt = 31;
-			u = 1;
-			int ww = a;
-			for(int i = 0; i < 32; i++){
-				if(a & (1<<i)){
-					u = modd(u * ww);
-				}
-				ww = modd(ww * ww);
-			}
-			if((ww ^ a) == 0)
-			v[t].pb({a,modd(u)});
 
-	set<int> s;
-	for(auto x : v[t]){
-		s.insert(x.fi);
-	}
-	cout<<s.size()<<" ";
-	for(auto x : s){
-		//assert(modd(x.se) == modd(x.fi ^ a));
-		cout<<x<<" ";
-	}
-	cout<<"\n";
+	
 
 
 
@@ -130,9 +126,8 @@ void solve()
 
 int32_t main(){
 	BOOST;
-
-	int t;
-	cin>>t;
+	int t = 1;
+//	cin>>t;
 	while(t--){
 		solve();
 	}
